@@ -51,7 +51,7 @@
         <option value="6">11,12</option>
     </select>
     <div>發票號碼:
-        <input type="text" name="inv_code" style="width:50px">
+        <input type="text" name="inv_code" style="width:50px" class="uppercase">
         <input type="number" name="inv_number" minlength="2" maxlength="8" style="width:150px">
     </div>
     <div>
