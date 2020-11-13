@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>統一發票紀錄及對獎系統</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        .uppercase{
+        text-transform:uppercase;}
+    </style>
 </head>
 <body>
     <h3 class="text-center">統一發票紀錄與對獎</h3>
@@ -31,6 +35,9 @@
             </div>
             <div class="text-center">
                 <a href="">輸入獎號</a>
+            </div>
+            <div class="text-center">
+                <a href="index.php">回首頁</a>
             </div>
         </div>
         <div class="col-8 d-flex justify-content-between p-3 mx-auto border">
