@@ -1,4 +1,3 @@
-<h3 class="text-center">統一發票紀錄與對獎</h3>
 
 <!-- 驗證數字 -->
 <script>
