@@ -7,13 +7,46 @@ date_default_timezone_set("Asia/Taipei");
 
 $code=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
 
-for ($i=0;$i<1000;$i++) {
-$inv_code=$code[rand(0,25)].$code[rand(0,25)];
-$inv_number=rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
-$payment_date // Y-m-d 都需要補0
-$payment_period // 需要參照上面日期資訊
-$payment_amount // 亂數
-$pdo -> exec("insert into invoices (`inv_code`,`inv_number`) values ('$inv_code','$inv_number')");
+
+for($i=0;$i<1000000;$i++){
+    $inv_code=$ABC[rand(0,25)].$ABC[rand(0,25)];
+    $inv_number=rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+    $start_date_timestamp=strtotime('03/01/2020');// m/d/Y
+    $end_date_timestamp=strtotime('11/01/2020');
+    $payment_date=date('Y-m-d',rand($start_date_timestamp,$end_date_timestamp));
+    $payment_period=ceil(date('m',strtotime($payment_date))/2);
+    $payment_amount=rand(10,100000);  
+    $sql="insert into `invoices`(`inv_code`,`inv_number`,`payment_date`,`payment_period`,`payment_amount`) values('$inv_code','$inv_number','$payment_date','$payment_period','$payment_amount')";
+    $reslt=$pdo->exec($sql);
+    $inv[]=$inv_code.$inv_number;
 }
+if(count($inv)!=count(array_flip($inv))){
+    $t=count($inv)-count(array_flip($inv));
+    for($j=0;$j<$t;$j++){
+        $inv_code=$ABC[rand(0,25)].$ABC[rand(0,25)];
+        $inv_number=rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+        $start_date_timestamp=strtotime('03/01/2020');// m/d/Y
+        $end_date_timestamp=strtotime('11/01/2020');
+        $payment_date=date('Y-m-d',rand($start_date_timestamp,$end_date_timestamp));
+        $payment_period=ceil(date('m',strtotime($payment_date))/2);
+        $payment_amount=rand(10,100000);  
+        $sql="insert into `invoices`(`inv_code`,`inv_number`,`payment_date`,`payment_period`,`payment_amount`) values('$inv_code','$inv_number','$payment_date','$payment_period','$payment_amount')";
+        $reslt=$pdo->exec($sql);
+        $inv[]=$inv_code.$inv_number;
+}else{
+    echo "count of original array ".count($inv);
+    echo "</br>";
+    echo "count of flip array ".count(array_flip($inv));
+    echo "</br>";
+}
+// echo "</br>";
+// print_r($inv);
+// echo "</br>";
+// echo count($inv);
+// echo "</br>";
+// print_r(array_flip($inv));
+// echo "</br>";
+// echo count(array_flip($inv));
+// echo "</br>";
 
 ?>
