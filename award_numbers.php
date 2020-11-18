@@ -1,51 +1,50 @@
 <?php
-include_once "base.php";
+    include_once "base.php";
 
-if(isset($_GET['pd'])){
-    $year=explode("-",$_GET['pd'])[0];
-    $period=explode("-",$_GET['pd'])[1];
-}else{
-    $get_news=$pdo->query("SELECT * FROM `awards` order by `payment_year` desc ,`payment_period` desc limit 1")->fetch();
-    $year=$get_news['payment_year'];
-    $period=$get_news['payment_period'];
-    
-}
-/* echo "year=".$year;
-echo "<br>";
-echo "period=".$period; */
-$awards=$pdo->query("select * from awards where payment_year='$year' && payment_period='$period'")->fetchAll();
-$special="";
-$grand="";
-$first=[];
-$six=[];
-
-foreach($awards as $aw){
-    switch($aw['type']){
-        case 1:
-            $special=$aw['inv_number'];
-        break;
-        case 2:
-            $grand=$aw['inv_number'];
-        break;
-        case 3:
-            $first[]=$aw['inv_number'];
-        break;
-        case 4:
-            $six[]=$aw['inv_number'];
-        break;
+    if(isset($_GET['pd'])){
+        $year=explode("-",$_GET['pd'])[0];
+        $period=explode("-",$_GET['pd'])[1];
+    }else{
+        $get_news=$pdo->query("SELECT * FROM `awards` order by `payment_year` desc ,`payment_period` desc limit 1")->fetch();
+        $year=$get_news['payment_year'];
+        $period=$get_news['payment_period'];
     }
-}
+
+    /* echo "year=".$year;
+    echo "<br>";
+    echo "period=".$period; */
+    $awards=$pdo->query("select * from awards where payment_year='$year' && payment_period='$period'")->fetchAll();
+    $special="";
+    $grand="";
+    $first=[];
+    $six=[];
+
+    foreach($awards as $aw){
+        switch($aw['type']){
+            case 1:
+                $special=$aw['inv_number'];
+            break;
+            case 2:
+                $grand=$aw['inv_number'];
+            break;
+            case 3:
+                $first[]=$aw['inv_number'];
+            break;
+            case 4:
+                $six[]=$aw['inv_number'];
+            break;
+        }
+    }
 
 ?>
-<div class='row justify-content-around' style="list-style-type:none;padding:0">
-    <li><a href="">1,2月</a></li>
-    <li><a href="">3,4月</a></li>
-    <li><a href="">5,6月</a></li>
-    <li><a href="">7,8月</a></li>
-    <li><a href="">9,10月</a></li>
-    <li><a href="">11,12月</a></li>
-
-</div>
+<!-- <div class="w-100 d-inline-block">
+    <div><a href="">1,2月</a></div>
+    <div><a href="">3,4月</a></div>
+    <div><a href="">5,6月</a></div>
+    <div><a href="">7,8月</a></div>
+    <div><a href="">9,10月</a></div>
+    <div><a href="">11,12月</a></div>
+</div> -->
 <table class="table table-bordered table-sm" summary="統一發票中獎號碼單"> 
    <tbody>
     <tr> 
