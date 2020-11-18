@@ -7,15 +7,19 @@ $inv=$pdo->query($sql)->fetch();
     print_r($inv);
 echo "</pre>" */
 ?>
-<form action="api/update_invoice.php" method="post">
-    <input type="hidden" name="id" value="<?=$inv['id'];?>">
-    <div>發票號碼:
-            <input type="text" name="code" style="width:30px" value="<?=$inv['code'];?>">
-            <input type="number" name="number" value='<?=$inv['number'];?>'></div>
-    <div>消費日期:<input type="date" name='date' value="<?=$inv['date'];?>"></div>
-    <div>消費金額:<input type="text" name='payment' value="<?=$inv['payment'];?>"></div>
-    <div>
-        <input type="submit" value="修改">
-        <input type="reset" value="重置">
+<div class="col-md-6 text-center border p-4 mx-auto">
+    <div class="text-center">確認要刪除以下發票資料嗎?</div>
+    <ul class="list-group">
+        <li class="list-group-item"><?=$inv['code'].$inv['number'];?></li>
+        <li class="list-group-item"><?=$inv['date'];?></li>
+        <li class="list-group-item"><?=$inv['payment'];?></li>
+    </ul>
+    <div class="text-center mt-4">
+        <button class="btn-danger">
+                <a href="api/del.php?id=<?=$_GET['id'];?>">確認</a>
+        </button>
+        <button class="btn-warning">
+            <a href="?do=invoice_list">取消</a>
+        </button>
     </div>
-</form>
+</div>
