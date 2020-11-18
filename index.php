@@ -31,10 +31,10 @@
                 <a href="?do=invoice_list">當期發票</a>
             </div>
             <div class="text-center">
-                <a href="">對獎</a>
+                <a href="?do=award_numbers">對獎</a>
             </div>
             <div class="text-center">
-                <a href="">輸入獎號</a>
+                <a href="?do=add_awards">輸入獎號</a>
             </div>
             <div class="text-center">
                 <a href="index.php">回首頁</a>

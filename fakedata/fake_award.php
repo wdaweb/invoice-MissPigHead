@@ -1,7 +1,10 @@
 <?php
 // 產生每期獎號
-// 
-// 資料驗證：同年同期不可出現重複發票號 => 暫不在此程式加入資料驗證
+// 特別獎 8碼 1組 (type=1)
+// 特獎 8碼 1組 (type=2)
+// 頭獎 8碼 3組 (type=3)
+// 增開六獎 3碼 隨機0~3組(type=4)
+// 資料驗證：同期增開6獎不與頭獎末3碼重複
 
 $dsn = "mysql:host=localhost;dbname=invoicesys;charset=utf8";
 $pdo = new PDO($dsn,'root','');
