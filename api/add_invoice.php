@@ -6,7 +6,6 @@
 include_once "../base.php";
 
 $sql="insert into invoices (`".implode("`,`",array_keys($_POST))."`) values('".implode("','",$_POST)."')";
-echo $sql;
 
 $chk = $pdo->exec($sql);
 
