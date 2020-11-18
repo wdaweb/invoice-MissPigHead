@@ -1,6 +1,6 @@
 <?php
     include_once "base.php";
-    $sql="select * from `invoices` order by payment_date desc";
+    $sql="select * from `invoices` where payment_period='5' and payment_year='2020' order by payment_date desc";
     $rows=$pdo->query($sql)->fetchAll();
 ?>
 <table class="table text-center">
