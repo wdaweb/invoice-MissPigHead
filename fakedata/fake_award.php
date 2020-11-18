@@ -5,7 +5,9 @@
 // 頭獎 8碼 3組 (type=3)
 // 增開六獎 3碼 隨機0~3組(type=4)
 
-// 資料驗證：同期增開6獎不與頭獎末3碼重複 => 未完成
+// 資料驗證：   => 未完成
+// 同期特別獎/特獎/頭獎，獎號 不可重複
+// 同期增開6獎 與 頭獎末3碼 不可重複
 
 $dsn = "mysql:host=localhost;dbname=invoicesys;charset=utf8";
 $pdo = new PDO($dsn,'root','');
