@@ -12,7 +12,7 @@
 $dsn = "mysql:host=localhost;dbname=invoicesys;charset=utf8";
 $pdo = new PDO($dsn,'root','');
 
-for($i=19;$i<=20;$i++){  // $i for year
+for($i=2016;$i<=2020;$i++){  // $i for year
     for($j=1;$j<=6;$j++){ // $j for period
         
         $inv_number_1=rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9); // 隨機8碼

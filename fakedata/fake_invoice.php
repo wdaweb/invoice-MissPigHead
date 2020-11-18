@@ -6,11 +6,11 @@
 $dsn = "mysql:host=localhost;dbname=invoicesys;charset=utf8";
 $pdo = new PDO($dsn,'root','');
 
-for($i=0;$i<10000;$i++){
+for($i=0;$i<2000;$i++){
     for($j=0;$j<100;$j++){
     $inv_code=chr(rand(65,90)).chr(rand(65,90)); // chr(rand(65,90)) 隨機英文字母
     $inv_number=rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9); // 隨機8碼
-    $payment_date=date('Y-m-d',rand(strtotime('03/01/2018'),strtotime('11/30/2020'))); // 依設定的區間 產出隨機日期
+    $payment_date=date('Y-m-d',rand(strtotime('01/01/2016'),strtotime('11/30/2020'))); // 依設定的區間 產出隨機日期
     $payment_year=date('Y',strtotime($payment_date)); // 此欄位提供資料驗證用
     $payment_period=ceil(date('m',strtotime($payment_date))/2);
     $payment_amount=rand(1,1000)*pow(10,rand(0,3)); 

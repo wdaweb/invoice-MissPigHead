@@ -1,6 +1,8 @@
 <?php
     include_once "base.php";
-    $sql="select * from `invoices` where payment_period='5' and payment_year='2020' order by payment_date desc";
+    $payment_period='5'; // 之後改由使用者輸入
+    $payment_year='2020'; // 之後改由使用者輸入
+    $sql="select * from `invoices` where payment_period='$payment_period' and payment_year='$payment_year' order by payment_date desc";
     $rows=$pdo->query($sql)->fetchAll();
 ?>
 <table class="table text-center">
@@ -14,6 +16,17 @@
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button class="btn btn-sm btn-success text-light" type="submit">
+                <a class="text-light" href="?do=award_all&y=<?=$payment_year;?>&p=<?=$payment_period;?>">全部一起對獎</a>
+            </button>
+            </td>
+        </tr>
     <?php
         foreach($rows as $row){
     ?>
