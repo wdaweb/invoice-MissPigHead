@@ -1,73 +1,62 @@
-測試中
-
 <?php
 
-// echo "<pre>";
-// print_r($_GET['p']);
-// echo "</br>";
-// print_r($_GET['y']);
-// echo "</pre>";
-// echo "<hr>";
-
-
 include_once "base.php";
-
-$invoices=$pdo->query("select * from `invoices` where payment_period='5' and payment_year='2020'")->fetchAll();
-
+$invoices=$pdo->query("select * from `invoices` where payment_period='{$_GET['p']}' and payment_year='{$_GET['y']}'")->fetchAll();
 $awards=$pdo->query("select * from awards where payment_year='{$_GET['y']}' && payment_period='{$_GET['p']}'")->fetchALL();
 
-
-$result=1;
-for($i=0;$i<count($invoices);$i++){
-    $number=$invoices[$i]['inv_number'];
-    foreach($awards as $award){
-        switch($award['type']){
-            case 1:
-                //特別號
-                if($award['inv_number']==$number){
-                    echo "<br>號碼=".$number."<br>";
-                    echo "<br>中了特別獎<br>";
-                    $result=-1;
-                }
-                
-            break;
-            case 2:
-                
-                if($award['inv_number']==$number){
-                    echo "<br>號碼=".$number."<br>";
-                    echo "中了特獎<br>";
-                    $result=-1;
-                }
-                
-            break;
-            case 3:
-                for($i=6;$i>0;$i--){
-                    $target=mb_substr($award['inv_number'],$i,(8-$i),'utf8');
-                    $mynumber=mb_substr($number,$i,(8-$i),'utf8');
-                    
-                    if($target==$mynumber){
-                        echo "<br>號碼=".$number."<br>";
-                        echo "中了{$awardStr[$i]}獎<br>";
-                        $result=-1;
-                    }else{
-                    break;
-                    //continue
-                }
-            }
-        break;
-        case 4:
-            if($award['inv_number']==mb_substr($number,5,3,'utf8')){
-                echo "<br>號碼=".$number."<br>";
-                echo "中了增開六獎";
-                $result=-1;
-            }
-        break;
-      }
-    }
-    
-    // if($result){
-    // echo "<br>號碼=".$number."沒有中獎";
-    // }
+foreach($awards as $award){
+    $award_number[]=$award['inv_number'];
+    $award_type[]=$award['type'];
 }
+
+$award_type=['0'=>"特別獎",
+             '1'=>"特獎",
+             '2'=>"頭獎",
+             '3'=>"頭獎",
+             '4'=>"頭獎",
+             '5'=>"增開六獎",
+             '6'=>"增開六獎",
+             '7'=>"增開六獎"];
+
+foreach($invoices as $invoice){
+    $invoice_number[]=$invoice['inv_number'];
+    $invoice_number_7[]=substr($invoice['inv_number'],-7);
+    $invoice_number_6[]=substr($invoice['inv_number'],-6);
+    $invoice_number_5[]=substr($invoice['inv_number'],-5);
+    $invoice_number_4[]=substr($invoice['inv_number'],-4);
+    $invoice_number_3[]=substr($invoice['inv_number'],-3);
+}
+
+$regret=1;
+
+for($i=0;$i<count($awards);$i++){
+    if(in_array($award_number[$i],$invoice_number) && (4<=$i)){
+        echo "<br>".$award_number[$i]."中$award_number[$i]了！";
+        $regret=-1;
+    }elseif(in_array(substr($award_number[$i],-7),$invoice_number_7) && (2<=$i && $i<=4)){
+        echo "<br>".$award_number[$i]."中二獎了！";
+        $regret=-1;
+    }elseif(in_array(substr($award_number[$i],-6),$invoice_number_6) && (2<=$i && $i<=4)){
+        echo "<br>".$award_number[$i]."中三獎了！";
+        $regret=-1;
+    }elseif(in_array(substr($award_number[$i],-5),$invoice_number_5) && (2<=$i && $i<=4)){
+        echo "<br>".$award_number[$i]."中四獎了！";
+        $regret=-1;
+    }elseif(in_array(substr($award_number[$i],-4),$invoice_number_4) && (2<=$i && $i<=4)){
+        echo "<br>".$award_number[$i]."中五獎了！";
+        $regret=-1;
+    }elseif(in_array(substr($award_number[$i],-3),$invoice_number_3) && (2<=$i && $i<=4)){
+        echo "<br>".$award_number[$i]."中六獎了！";
+        $regret=-1;
+    }elseif(in_array(($award_number[$i]),$invoice_number_3) && (5<=$i)){
+        echo "<br>".$invoice_number[array_search('266',$invoice_number_3)]."中增開六獎了！";
+        $regret=-1;
+    }
+}
+
+if($regret==1){
+    echo "拍謝，這期沒中獎哦....";
+}
+
 
 ?>
