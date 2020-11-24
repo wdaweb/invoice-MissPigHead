@@ -64,13 +64,14 @@
    - i_type
    - i_store
    - i_others
+   - i_account  (<<- 關聯使用者)
 
 3. 獎號 - awards
    - a_id
    - a_year
    - a_period
    - a_number
-   - a_type
+   - a_type  (<<- 關聯獎金)
 
 4. 獎金 - prize
    - p_id
@@ -79,8 +80,9 @@
    
 5. 中獎紀錄表- reward
    - r_id
-   - r_user
-   - r_inv
-   - r_year
-   - r_period
+   - r_account  (<<- 關聯使用者)
+   - r_number  (<<- 關聯獎號)
+   - r_year  (<<- 關聯獎號)
+   - r_period  (<<- 關聯獎號)
+   - r_type
 
