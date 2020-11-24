@@ -48,13 +48,13 @@
 ## 資料庫：
 ```
 1. 使用者 - users
-   - u_id (primary_key)
+   - u_id
    - u_account
    - u_password
    - u_email
    
 2. 發票 - invoice
-   - i_inv (primary_key)
+   - i_id
    - i_code
    - i_number
    - i_date
@@ -67,19 +67,19 @@
    - i_account  (<<- 關聯使用者)
 
 3. 獎號 - awards
-   - a_id (primary_key)
+   - a_id 
    - a_year
    - a_period
    - a_number
    - a_type  (<<- 關聯獎金)
 
 4. 獎金 - prize
-   - p_id (primary_key)
+   - p_id 
    - p_type
    - p_amount
    
 5. 中獎紀錄表- reward
-   - r_id (primary_key)
+   - r_id 
    - r_account  (<<- 關聯使用者)
    - r_number  (<<- 關聯獎號)
    - r_year  (<<- 關聯獎號)
