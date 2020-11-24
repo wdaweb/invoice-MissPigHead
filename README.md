@@ -84,5 +84,5 @@
    - r_number  (<<- 關聯獎號)
    - r_year  (<<- 關聯獎號)
    - r_period  (<<- 關聯獎號)
-   - r_type
+   - r_type  (<<- 好像不需要！？)
 
