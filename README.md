@@ -67,19 +67,19 @@
    - i_account  (<<- 關聯使用者)
 
 3. 獎號 - awards
-   - a_id
+   - a_id (primary_key)
    - a_year
    - a_period
    - a_number
    - a_type  (<<- 關聯獎金)
 
 4. 獎金 - prize
-   - p_id
+   - p_id (primary_key)
    - p_type
    - p_amount
    
 5. 中獎紀錄表- reward
-   - r_id
+   - r_id (primary_key)
    - r_account  (<<- 關聯使用者)
    - r_number  (<<- 關聯獎號)
    - r_year  (<<- 關聯獎號)
