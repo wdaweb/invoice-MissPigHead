@@ -1,0 +1,10 @@
+body{
+    background: #f7f7f7;
+}
+
+.mainframe{
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+}
