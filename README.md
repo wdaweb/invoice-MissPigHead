@@ -1,4 +1,4 @@
-# 消費紀錄及發票對獎系統
+# 統一發票消費紀錄及對獎
  
 ## 功能：
 ```
@@ -49,28 +49,30 @@
 ```
 1. 使用者 - users
    - u_id
-   - u_account
-   - u_password
+   - u_acc (<<-4~10字元，英文或數字，帳號不可重複)
+   - u_pw (<<-8~16字元，英文或數字)
+   - u_birth
+   - u_tel 
    - u_email
    
 2. 發票 - invoice
    - i_id
    - i_code
-   - i_number
+   - i_num
    - i_date
    - i_year (<<- 12月/1月，發票期別調整時 需同時調整年度)
    - i_period  (<<- 12月/1月，發票期別調整時 需同時調整年度)
    - i_amount
    - i_type
    - i_store
-   - i_others
-   - i_account  (<<- 關聯使用者)
+   - i_other
+   - i_acc  (<<- 關聯使用者)
 
 3. 獎號 - awards
    - a_id 
    - a_year
    - a_period
-   - a_number
+   - a_num
    - a_type  (<<- 關聯獎金)
 
 4. 獎金 - prize
@@ -80,9 +82,7 @@
    
 5. 中獎紀錄表- reward
    - r_id 
-   - r_account  (<<- 關聯使用者)
-   - r_number  (<<- 關聯獎號)
+   - r_acc  (<<- 關聯使用者)
+   - r_num  (<<- 關聯獎號)
    - r_year  (<<- 關聯獎號)
    - r_period  (<<- 關聯獎號)
-   - r_type  (<<- 好像不需要！？)
-
