@@ -21,11 +21,7 @@ $sql="insert into
 $pdo->exec($sql);
 
 //特獎的新增  type=2
-$sql="insert into 
-        award_numbers 
-        (`year`,`period`,`number`,`type`)
-     values
-        ('$year','$period','{$_POST['grand_prize']}','2')";
+$sql="insert into award_numbers(`year`,`period`,`number`,`type`) values('$year','$period','{$_POST['grand_prize']}','2')";
 $pdo->exec($sql);
 
 //頭獎 type=3

@@ -49,7 +49,7 @@ for($i=0;$i<count($awards);$i++){
         echo "<br>".$award_number[$i]."中六獎，獎金200元！";
         $regret=-1;
     }elseif(in_array(($award_number[$i]),$invoice_number_3) && (5<=$i)){
-        echo "<br>".$invoice_number[array_search('266',$invoice_number_3)]."中增開六獎，獎金200元！";
+        echo "<br>".$invoice_number[array_search($award_number[$i],$invoice_number_3)]."中增開六獎，獎金200元！";
         $regret=-1;
     }
 }

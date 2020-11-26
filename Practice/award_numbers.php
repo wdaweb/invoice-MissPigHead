@@ -37,14 +37,15 @@
     }
 
 ?>
-<!-- <div class="w-100 d-inline-block">
-    <div><a href="">1,2月</a></div>
-    <div><a href="">3,4月</a></div>
-    <div><a href="">5,6月</a></div>
-    <div><a href="">7,8月</a></div>
-    <div><a href="">9,10月</a></div>
-    <div><a href="">11,12月</a></div>
-</div> -->
+
+<div><a href="?do=award_numbers&pd=2020-1">1,2月</a></div>
+<div><a href="?do=award_numbers&pd=2020-2">3,4月</a></div>
+<div><a href="?do=award_numbers&pd=2020-3">5,6月</a></div>
+<div><a href="?do=award_numbers&pd=2020-4">7,8月</a></div>
+<div><a href="?do=award_numbers&pd=2020-5">9,10月</a></div>
+<div><a href="?do=award_numbers&pd=2020-6 ">11,12月</a></div>
+</div>
+<div class="col-8">
 <table class="table table-bordered table-sm" summary="統一發票中獎號碼單"> 
    <tbody>
     <tr> 
@@ -128,3 +129,4 @@
     </tr>  
    </tbody>
 </table>
+</div>
