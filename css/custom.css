@@ -1,10 +1,9 @@
 body{
-    background: #f7f7f7;
+    background: #e0eef0;
 }
 
 .mainframe{
-    width: 80vw;
-    height: 80vh;
+    width: 90vw;
     display: flex;
     justify-content: center;
 }
