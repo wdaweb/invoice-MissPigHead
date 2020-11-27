@@ -8,17 +8,17 @@ $dsn = "mysql:host=localhost;dbname=invoicesys;charset=utf8";
 $pdo = new PDO($dsn,'root','');
 
 for($i=0;$i<1000;$i++){
-    $i_code=chr(rand(65,90)).chr(rand(65,90)); // chr(rand(65,90)) 隨機英文字母
-    $i_num=rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9); // 隨機8碼
-    $i_date=date('Y-m-d',rand(strtotime('01/01/2018'),strtotime('11/30/2020'))); // 依設定的區間 產出隨機日期
-    $i_year=date('Y',strtotime($i_date)); // 此欄位提供資料驗證用
-    $i_period=ceil(date('m',strtotime($i_date))/2);
-    $i_amount=rand(1,30)*pow(10,rand(2,3)); 
-    $i_type=rand(1,8);
-    $i_store=rand(1,2);
-    $i_acc=rand(1,5);
-    $sql_check="select * from `invoice` where `i_code`='$i_code' && `i_num`='$i_num' && `i_year`='$i_year' && `i_period`='$i_period'";
-    $sql_insert="insert into `invoice`(`i_code`,`i_num`,`i_date`,`i_year`,`i_period`,`i_amount`,`i_type`,`i_store`,`i_acc`) values('$i_code','$i_num','$i_date','$i_year','$i_period','$i_amount','$i_type','$i_store','$i_acc')";
+    $code=chr(rand(65,90)).chr(rand(65,90)); // chr(rand(65,90)) 隨機英文字母
+    $num=rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9); // 隨機8碼
+    $date=date('Y-m-d',rand(strtotime('01/01/2018'),strtotime('11/30/2020'))); // 依設定的區間 產出隨機日期
+    $year=date('Y',strtotime($date)); // 此欄位提供資料驗證用
+    $period=ceil(date('m',strtotime($date))/2);
+    $amount=rand(10,80)*pow(10,rand(0,2)); 
+    $type=rand(1,9);
+    $store=rand(1,2);
+    $acc=rand(1,5);
+    $sql_check="select * from `invoice` where `code`='$code' && `num`='$num' && `year`='$year' && `period`='$period'";
+    $sql_insert="insert into `invoice`(`code`,`num`,`date`,`year`,`period`,`amount`,`type`,`store`,`acc`) values('$code','$num','$date','$year','$period','$amount','$type','$store','$acc')";
     $check=$pdo->query($sql_check)->fetch();
     if(empty($check)){
         $pdo->query($sql_insert);
