@@ -1,4 +1,4 @@
-<form id="register" class="container" action="register.php" method="post">
+<form class="container" action="api/select_user.php" method="post">
   <div class="row justify-content-center">
     <div class="input-group col-sm-10 col-md-8 col-lg-6 mx-md-5 my-2">
       <div class="input-group-prepend">
@@ -12,9 +12,12 @@
       </div>
       <input type="password" class="form-control" name="password" placeholder="請輸入8~16字元英文或數字">
     </div>
-    <div class="col-6 my-2 d-flex justify-content-center">
-      <button type="submit" class="btn btn-info mx-2">註冊</button>
+    <div class="col-sm-10 my-2 d-flex justify-content-center">
+      <button type="submit" class="btn btn-info mx-2">登入</button>
       <button type="reset" class="btn btn-warning mx-2">重填</button>
+    </div>
+    <div class="col-sm-10 col-md-8 col-lg-6 mx-md-5 mt-5 pt-5 d-flex justify-content-center align-items-center">
+      <span class="font-italic">還沒有帳號嗎？去申請～</span><a class="btn btn-outline-dark py-0 px-2 font-weight-bold mx-1" href="./index.php?do=signup">GO</a>
     </div>
   </div>
 </form>
