@@ -51,6 +51,7 @@
    - id
    - acc (<<-4~10字元，英文或數字，帳號不可重複)
    - pw (<<-8~16字元，英文或數字)
+   - role
    - birth
    - tel 
    - email
@@ -80,17 +81,16 @@
    - type
    - name 
    - amount
+   - amountC
    
 5. 中獎紀錄表- reward
    - id 
-   - acc  (<<- 關聯使用者)
-   - num  (<<- 關聯獎號)
-   - year  (<<- 關聯獎號)
-   - period  (<<- 關聯獎號)
+   - inv_id  (<<- 關聯發票 -> 使用者)
+   - award_id  (<<- 關聯獎項 -> 獎金)
 
-6. 消費商家 - contype
+6. 消費屬性 - contype
    - id 
-   - type
+   - type  (<<- 關聯商家)
 
 7. 消費商家 - store
    - id 
