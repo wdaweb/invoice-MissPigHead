@@ -81,7 +81,7 @@
    - type
    - name 
    - amount
-   - amountC
+   - amountCH
    
 5. 中獎紀錄表- reward
    - id 
@@ -91,6 +91,7 @@
 6. 消費屬性 - contype
    - id 
    - type  (<<- 關聯商家)
+   - desCH
 
 7. 消費商家 - store
    - id 
