@@ -1,15 +1,19 @@
 <!-- 資料格式驗證：待老師教JavaScipt後補充 -->
-<form class="container" action="./api/add_invoice.php" method="post">
+<div class="container" action="./api/insert_invoice.php" method="post">
   <div class="row justify-content-center">
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
-      <div class="input-group-prepend">
-        <span class="input-group-text">發票字軌</span>
+      <div class="input-group col-md-5 mx-0 px-0">
+        <div class="input-group-prepend">
+          <span class="input-group-text">發票字軌</span>
+        </div>
+        <input type="text" class="form-control" name="code" placeholder="請輸入英文" required>
       </div>
-      <input type="text" class="form-control" name="code" placeholder="請輸入2位英文" required>
-      <div class="input-group-prepend">
-        <span class="input-group-text">號碼</span>
+      <div class="input-group col-md-7 mx-0 px-0">
+        <div class="input-group-prepend">
+          <span class="input-group-text">號碼</span>
+        </div>
+        <input type="text" class="form-control" name="num" placeholder="請輸入8位數字" required>
       </div>
-      <input type="text" class="form-control" name="num" placeholder="請輸入8位數字" required>
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">

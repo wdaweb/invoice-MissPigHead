@@ -1,25 +1,40 @@
 <?php
 include_once("base.php");
-print_r(errFeedBack('acc'));
-print_r(errFeedBack('pw'));
+$_SESSION['err']=[];
 
+$whereDes=['acc'=>$_POST['acc']];
+$row=actSQL('select','user','',$whereDes);
+
+print_r($_POST['acc']); echo "<br>";
+print_r($row);
+if(empty($row['acc'])){
+  $_SESSION['err']['acc']['notExist']="此帳號不存在";
+  // echo "ACC";
+  go("./index.php?do=login");
+}elseif($_POST['pw']!=$row['pw']){
+  $_SESSION['err']['pw']['wrong']="密碼錯誤";
+  echo "PW";
+  // go("./index.php?do=login");
+}elseif($_POST['pw']==$row['pw']){
+  $_SESSION['id']=$row['id'];
+  $_SESSION['acc']=$row['acc'];
+  go("./index.php?do=welcome");
+}
 
 ?>
-<form class="container" action="check_user.php" method="post">
+<!-- <form class="container" action="check_user.php" method="post">
   <div class="row justify-content-center">
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">帳號</span>
       </div>
-      <input type="text" class="form-control" name="acc" placeholder="請輸入4~10字元英文或數字">
-      <span><?php errFeedBack('acc');?></span>
+      <input type="text" class="form-control" name="account" placeholder="請輸入4~10字元英文或數字">
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">密碼</span>
       </div>
-      <input type="password" class="form-control" name="pw" placeholder="請輸入8~16字元英文或數字">
-      <span><?php errFeedBack('pw');?></span>
+      <input type="password" class="form-control" name="password" placeholder="請輸入8~16字元英文或數字">
     </div>
     <div class="col-sm-10 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">登入</button>
@@ -29,4 +44,4 @@ print_r(errFeedBack('pw'));
       <span class="font-italic">還沒有帳號嗎？去申請～</span><a class="btn btn-outline-dark py-0 px-2 font-weight-bold mx-1" href="./index.php?do=signup">GO</a>
     </div>
   </div>
-</form>
+</form> -->

@@ -1,9 +1,21 @@
 body{
-    background: #e0eef0;
+    background: #f8f9fa;
 }
 
 .mainframe{
     width: 90vw;
     display: flex;
     justify-content: center;
+}
+
+#menu .dropdown-item:focus, .dropdown-item:hover {
+    color: #051937 !important;
+    text-decoration: none;
+    background-color: #dee2e6;
+}
+
+#menu .dropdown-item:active {
+    color: #051937 !important;
+    text-decoration: none;
+    background-color: #BEE5EB;
 }

@@ -81,6 +81,44 @@
         <input type="text" class="form-control" name="sp_num[]">
       </div>
     </div>
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2 row">
+      <div class="input-group col-md-5 mx-0 px-0">
+        <div class="input-group-prepend">
+          <span class="input-group-text">獎項</span>
+        </div>
+        <select type="number" class="form-control" name="sp_prize[]">
+          <option value="">- 請選擇 -</option>
+          <option value="1M">特獎</option>
+          <option value="1">頭獎</option>
+          <option value="6A">六獎</option>
+        </select>
+      </div>
+      <div class="input-group col-md-7 mx-0 px-0">
+        <div class="input-group-prepend">
+          <span class="input-group-text">號碼</span>
+        </div>
+        <input type="text" class="form-control" name="sp_num[]">
+      </div>
+    </div>
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2 row">
+      <div class="input-group col-md-5 mx-0 px-0">
+        <div class="input-group-prepend">
+          <span class="input-group-text">獎項</span>
+        </div>
+        <select type="number" class="form-control" name="sp_prize[]">
+          <option value="">- 請選擇 -</option>
+          <option value="1M">特獎</option>
+          <option value="1">頭獎</option>
+          <option value="6A">六獎</option>
+        </select>
+      </div>
+      <div class="input-group col-md-7 mx-0 px-0">
+        <div class="input-group-prepend">
+          <span class="input-group-text">號碼</span>
+        </div>
+        <input type="text" class="form-control" name="sp_num[]">
+      </div>
+    </div>
     <div class="col-10 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">送出</button>
       <button type="reset" class="btn btn-warning mx-2">重填</button>

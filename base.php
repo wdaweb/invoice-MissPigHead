@@ -26,8 +26,8 @@ function actSQL($action,$tableName,$columnValue,$whereDes){
   switch ($action){
     case 'select':
       $sql="select * from `".$tableName."` ".$whereDes;
-      print_r($sql);
-      return $pdo->query($sql)->fetchAll();
+      // print_r($sql);
+      return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     break;
     case 'insert':
       $sql="insert into `".$tableName."`(`".implode("`,`",$columns)."`) values('".implode("','",$values)."')";  
@@ -52,4 +52,28 @@ function actSQL($action,$tableName,$columnValue,$whereDes){
 function go($url){
   header("location:".$url);
 }
+
+function checkLen($columnName,$maxLen,$minLen){
+  $Len=strlen($columnName);
+  if($Len<$minLen || $Len>$maxLen){
+    $msg="請輸入".$minLen."~".$maxLen."字元";
+    $_SESSION['err'][$columnName]['length']=$msg;
+  }
+}
+
+function checkEmpty($columnName){
+  if(empty($_POST[$columnName])){
+    $msg="本欄位不可為空白";
+    $_SESSION['err'][$columnName]['empty']=$msg;
+  }
+}
+
+function errFeedBack(...$columnName){
+  if(!empty($_SESSION['err']['$columnName'])){
+    foreach($_SESSION['err']['$columnName'] as $k => $v){
+      $_SESSION['err']['$columnName'][$k]=$v;
+    }
+  }
+}
+
 ?>
