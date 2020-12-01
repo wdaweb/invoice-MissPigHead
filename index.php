@@ -4,7 +4,7 @@
   ?>
 <body>
 <section id="menu">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-lg-4 px-xl-5">
     <a class="navbar-brand" href="./index.php">統一發票-紀錄與對獎</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -22,17 +22,17 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item text-white" href="./index.php?do=list_invoice">發票列表及操作</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" href="./index.php?do=">查詢特定發票</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" href="./index.php?do=">統計消費紀錄</a>
+            <!-- <a class="dropdown-item text-white" href="./index.php?do=">查詢特定發票</a>
+            <div class="dropdown-divider"></div> -->
+            <a class="dropdown-item text-white" href="./index.php?do=summary_invoice">統計消費紀錄</a>
           </div>
         </li>
         <li class="nav-item dropdown mx-1">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="./index.php?do=" role="button" aria-haspopup="true" aria-expanded="false">開獎號碼及對獎</a>
           <div class="dropdown-menu bg-secondary">
-            <a class="dropdown-item text-white" href="./index.php?do=">查詢開獎獎號</a>
+            <a class="dropdown-item text-white" href="./index.php?do=check_award">查詢開獎獎號</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" href="./index.php?do=">發票對獎</a>
+            <a class="dropdown-item text-white" href="./index.php?do=check_reward">發票對獎</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item text-white" href="./index.php?do=add_award">輸入開獎獎號</a>
           </div>
@@ -40,9 +40,9 @@
         <li class="nav-item dropdown mx-1">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="./index.php?do=" role="button" aria-haspopup="true" aria-expanded="false">使用者資料管理</a>
           <div class="dropdown-menu bg-secondary">
-            <a class="dropdown-item text-white" href="./index.php?do=">編輯個人資料</a>
+            <a class="dropdown-item text-white" href="./index.php?do=edit_user">編輯個人資料</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" href="./index.php?do=">查詢得獎記錄</a>
+            <a class="dropdown-item text-white" href="./index.php?do=reward_record">查詢得獎記錄</a>
           </div>
         </li>
         <li class="nav-item mx-1">
