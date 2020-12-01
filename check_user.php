@@ -1,21 +1,32 @@
 <?php
 include_once("base.php");
-$_SESSION['err']=[];
+$_SESSION['err'][]='';
 
-$whereDes=['acc'=>$_POST['acc']];
-$row=actSQL('select','user','',$whereDes);
+$whereDes=whereDes(whereD1('','acc',$_POST['acc'],'','',''),'','','');
+print_r($whereDes);
 
-print_r($_POST['acc']); echo "<br>";
-print_r($row);
+$rows=actSQL('select','user','',$whereDes); // 資料庫叫出X筆資料
+foreach($rows as $row){} // 將該筆資料，轉成陣列
+
+// print_r($rows); echo "<br>";
+// print_r($_POST['acc']); echo "<br>";
+// print_r($row['acc']); echo "<br>";
+// print_r($_POST['pw']); echo "<br>";
+// print_r($row['pw']); echo "<br>";
+
 if(empty($row['acc'])){
   $_SESSION['err']['acc']['notExist']="此帳號不存在";
   // echo "ACC";
   go("./index.php?do=login");
-}elseif($_POST['pw']!=$row['pw']){
+}elseif(!empty($row['acc']) && $row['acc']!==$_POST['acc']){
+  $_SESSION['err']['acc']['notExist']="此帳號不存在";
+  go("./index.php?do=login");
+  // echo "AGG";
+}elseif($_POST['pw']!==$row['pw']){
   $_SESSION['err']['pw']['wrong']="密碼錯誤";
-  echo "PW";
-  // go("./index.php?do=login");
-}elseif($_POST['pw']==$row['pw']){
+  // echo "PW";
+  go("./index.php?do=login");
+}elseif($_POST['pw']===$row['pw']){
   $_SESSION['id']=$row['id'];
   $_SESSION['acc']=$row['acc'];
   go("./index.php?do=welcome");
