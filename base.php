@@ -49,6 +49,17 @@ function actSQL($action,$tableName,$columnValue,$whereDes){
   }
 }
 
+function whereD1($table1,$column1,$table2,$column2){
+  $Des1="`".$table1."`.`".$column1."`=`".$table2."`.`".$column2."`";
+  return $Des1;
+}
+
+function whereD1($column1,$table2,$column2){
+  $Des1="`".$table1."`.`".$column1."`=`".$table2."`.`".$column2."`";
+  return $Des1;
+}
+
+
 function go($url){
   header("location:".$url);
 }
