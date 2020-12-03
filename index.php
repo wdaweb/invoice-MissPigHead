@@ -15,7 +15,7 @@
           <a class="nav-link" href="./index.php">回首頁 <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item dropdown mx-1">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="./index.php?do=" role="button" aria-haspopup="true" aria-expanded="false">發票管理及消費紀錄</a>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">發票管理及消費紀錄</a>
           <div class="dropdown-menu bg-secondary">
             <a class="dropdown-item text-white" href="./index.php?do=add_invoice">輸入發票資料</a>
             <!-- 參考寫到iframe的方式  <a href="results/leather1.html" target="imain"> -->
@@ -28,7 +28,7 @@
           </div>
         </li>
         <li class="nav-item dropdown mx-1">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="./index.php?do=" role="button" aria-haspopup="true" aria-expanded="false">開獎號碼及對獎</a>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">開獎號碼及對獎</a>
           <div class="dropdown-menu bg-secondary">
             <a class="dropdown-item text-white" href="./index.php?do=check_award">查詢開獎獎號</a>
             <div class="dropdown-divider"></div>
@@ -38,16 +38,18 @@
           </div>
         </li>
         <li class="nav-item dropdown mx-1">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="./index.php?do=" role="button" aria-haspopup="true" aria-expanded="false">使用者資料管理</a>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">使用者資料管理</a>
           <div class="dropdown-menu bg-secondary">
             <a class="dropdown-item text-white" href="./index.php?do=edit_user">編輯個人資料</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item text-white" href="./index.php?do=reward_record">查詢得獎記錄</a>
           </div>
         </li>
-        <li class="nav-item mx-1">
-          <a class="nav-link" href="./index.php" role="button">登入/登出</a>
-        </li>
+        <?php if(!empty($_SESSION['acc'])){ ?>
+          <li class="nav-item mx-1">
+            <a class="nav-link" href="./logout_user.php" role="button">登入/登出</a>
+          </li>
+        <?php } ?>
       </ul>
     </div>
   </nav>
@@ -66,7 +68,7 @@
   </div>
 </section>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="./js/jquery-3.5.1.min.js"></script>
+<script src="./js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
