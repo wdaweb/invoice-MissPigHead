@@ -1,5 +1,8 @@
 <?php
 include_once("base.php");
+if(!empty($_SESSION['acc'])){
+  go("./index.php?do=welcome");
+}
 ?>
 <form class="container" action="check_user.php" method="post">
   <div class="row justify-content-center">
@@ -8,14 +11,14 @@ include_once("base.php");
         <span class="input-group-text">帳號</span>
       </div>
       <input type="text" class="form-control" name="acc" placeholder="請輸入4~10字元英文或數字" required>
-      <span><?php if(!empty($_SESSION['err'])){errFeedBack('acc');}?></span>
+      <span><?php {errFeedBack('acc');$_SESSION['err']['acc']='';}?></span>
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">密碼</span>
       </div>
       <input type="password" class="form-control" name="pw" placeholder="請輸入8~16字元英文或數字" required>
-      <span><?php errFeedBack('pw');?></span>
+      <span><?php errFeedBack('pw');$_SESSION['err']['pw']='';?></span>
     </div>
     <div class="col-sm-10 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">登入</button>
