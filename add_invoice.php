@@ -1,5 +1,5 @@
 <!-- 資料格式驗證：待老師教JavaScipt後補充 -->
-<div class="container" action="./api/insert_invoice.php" method="post">
+<form class="container" action="./api/insert_invoice.php" method="post">
   <div class="row justify-content-center">
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group col-md-5 mx-0 px-0">
