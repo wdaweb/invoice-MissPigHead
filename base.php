@@ -119,15 +119,11 @@ function checkEmpty($columnName){
   }
 } // 檢查user是否未輸入
 
-$_SESSION['err']=[];
 function errFeedBack($columnName){
-  foreach($_SESSION['err'] as $_SESSION['err'][]){
     if(!empty($_SESSION['err'][$columnName])){
-      foreach($_SESSION['err'][$columnName] as $k => $v){
-        $_SESSION['err'][$columnName][$k]=$v;
-      }
+      echo $_SESSION['err'][$columnName];
     }
   }
-} // 輸出檢查後的error message
+ // 輸出檢查後的error message
 
 ?>
