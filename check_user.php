@@ -4,7 +4,6 @@ include_once("base.php");
 $_SESSION['err']=[];
 
 $whereDes=whereDes(whereD1('','acc',$_POST['acc'],'','',''),'','','');
-print_r($whereDes);
 
 $rows=actSQL('select','user','',$whereDes); // 資料庫叫出X筆資料
 foreach($rows as $row){} // 將該筆資料，轉成陣列
