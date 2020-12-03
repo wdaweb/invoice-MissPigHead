@@ -3,6 +3,11 @@ $pdo=new PDO("mysql:host=localhost;dbname=invoicesys;charset=utf8",'root','');
 date_default_timezone_set("Asia/Taipei");
 session_start();
 
+function selectSQL($sql){
+  global $pdo;
+  return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+} // 寫好sql語法，“抓回”全部值
+
 function actSQL($action,$tableName,$columnValue,$whereDes){
   global $pdo;
   if(!empty($columnValue)){
@@ -29,7 +34,7 @@ function actSQL($action,$tableName,$columnValue,$whereDes){
     break;
     case 'delete':
       $sql="delete from `".$tableName."` ".$whereDes;
-      print_r($sql);
+      // print_r($sql);
       // return 
       $pdo->exec($sql);
     break;
@@ -114,6 +119,7 @@ function checkEmpty($columnName){
   }
 } // 檢查user是否未輸入
 
+$_SESSION['err']=[];
 function errFeedBack($columnName){
   foreach($_SESSION['err'] as $_SESSION['err'][]){
     if(!empty($_SESSION['err'][$columnName])){

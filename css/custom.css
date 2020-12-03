@@ -19,3 +19,35 @@ body{
     text-decoration: none;
     background-color: #BEE5EB;
 }
+
+.invoice-list-code{
+    width:6%;
+    padding-right: 0;
+    padding-left: 0;
+}
+.invoice-list-num{
+    width:17%;
+    padding-right: 0;
+    padding-left: 0;
+}
+.invoice-list-date{
+    width:17%;
+    padding-right: 0;
+    padding-left: 0;
+}
+.invoice-list-amount{
+    width:10%;
+    text-align: right;
+    padding-right: 0;
+    padding-left: 0;
+}
+.invoice-list-desCH{
+    width:25%;
+    padding-right: 0;
+    padding-left: 0;
+}
+.invoice-list-name{
+    width:25%;
+    padding-right: 0;
+    padding-left: 0;
+}

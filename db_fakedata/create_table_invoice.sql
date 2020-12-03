@@ -9,5 +9,5 @@ CREATE TABLE `invoicesys`.`invoice` (
     `type` INT(2) NOT NULL , 
     `store` INT(2) NOT NULL , 
     `other` VARCHAR(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , 
-    `acc` VARCHAR(10) NOT NULL , 
+    `user_id` INT(2) NOT NULL , 
     PRIMARY KEY (`id`)) ENGINE = InnoDB;

@@ -53,16 +53,18 @@
   </nav>
 </section>
 
-<div class="container mt-1 mt-md-4 mainframe">
-  <?php
-    if(isset($_GET['do'])){
-      $file=$_GET['do'].".php";
-      include $file;
-    }else{
-      include "login.php";
-    }
-  ?>
-</div>
+<section id="main">
+  <div class="container mt-1 mt-md-4 mainframe">
+    <?php
+      if(isset($_GET['do'])){
+        $file=$_GET['do'].".php";
+        include $file;
+      }else{
+        include "login.php";
+      }
+    ?>
+  </div>
+</section>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
