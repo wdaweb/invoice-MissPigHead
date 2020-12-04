@@ -9,10 +9,10 @@ $rows=actSQL('select','user','',$whereDes); // 資料庫叫出X筆資料
 foreach($rows as $row){} // 將該筆資料，轉成陣列
 
 if(empty($row['acc']) || (!empty($row['acc']) && $row['acc']!==$_POST['acc'])){
-  $_SESSION['err']['acc']="此帳號不存在";
+  $_SESSION['err']['login']['acc']="此帳號不存在";
   go("./index.php?do=login");
 }elseif($_POST['pw']!==$row['pw']){
-  $_SESSION['err']['pw']="密碼錯誤";
+  $_SESSION['err']['login']['pw']="密碼錯誤";
   go("./index.php?do=login");
 }else{
   $_SESSION['id']=$row['id'];
