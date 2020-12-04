@@ -11,14 +11,16 @@ if(!empty($_SESSION['acc'])){
         <span class="input-group-text">帳號</span>
       </div>
       <input type="text" class="form-control" name="acc" placeholder="請輸入4~10字元英文或數字" required>
-      <span><?php {errFeedBack('acc');$_SESSION['err']['acc']='';}?></span>
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">密碼</span>
       </div>
       <input type="password" class="form-control" name="pw" placeholder="請輸入8~16字元英文或數字" required>
-      <span><?php errFeedBack('pw');$_SESSION['err']['pw']='';?></span>
+    </div>
+    <div class="col-sm-10 col-md-8 col-lg-6 my-2 justify-content-center mr-5 pr-5">
+      <span><?php if(!empty($_SESSION['err'])){errFeedBack('login','acc');}?></span>
+      <span><?php if(!empty($_SESSION['err'])){errFeedBack('login','pw');}?></span>
     </div>
     <div class="col-sm-10 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">登入</button>
@@ -29,3 +31,6 @@ if(!empty($_SESSION['acc'])){
     </div>
   </div>
 </form>
+<?php
+unset($_SESSION['err']);
+?>
