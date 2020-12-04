@@ -1,6 +1,20 @@
 <?php
   include_once "./base.php";
 
+  unset($_SESSION['col']);
+  unset($_SESSION['year']);
+  unset($_SESSION['page']);
+  unset($_SESSION['invs']);
+  unset($_SESSION['pNum']);
+  unset($_SESSION['pLine']);
+  unset($_SESSION['t_inv']);
+  unset($_SESSION['t_col']);
+  unset($_SESSION['period']);
+  unset($_SESSION['columnN']);
+  unset($_SESSION['pNext']);
+  unset($_SESSION['pPre']);
+
+
   if(empty($_SESSION['acc'])){
     go("./index.php");
   }else{
@@ -14,34 +28,49 @@
     $period=6;
     $year=$year-1;
   }
-  $pLine=15; // 定義：每頁行數
-  if(!empty($_POST['page'])){ // 定義：目前頁數
-    $page=($_POST['page']-1)*$pLine+1; 
-  }else{$page=1;} // 定義：該頁SQL起始行
 
-  $sql="SELECT `invoice`.`id`,`code`,`num`,RIGHT(`date`,5),`amount`,`contype`.`desCH`,`store`.`name`,`user_id` FROM `invoice`,`contype`,`store` WHERE `invoice`.`type`=`contype`.`type` && `contype`.`type`=`store`.`type` && `user_id`='{$user_id}' && `year`='{$year}' && `period`='{$period}' order by `date` limit {$page},{$pLine}"; // Mysql搜尋語法
-  $invs=selectSQL($sql); // 資料庫抓出的發票陣列
-  $inv=[];
-  foreach($invs as $v){
-    $inv[]=$v;
-    } // 將發票陣列 拆成單張發票
-  $col=(array_keys($inv[0])); // 發票的column
-  $columnN=['id','字軌','號碼','日期','金額','消費類型','消費商家','user_id']; // column 中文
-  $t_inv=count($inv); // 發票 總筆數
-  $t_col=count(array_keys($inv[0])); // 欄位 個數
-  $pNum=ceil($t_inv/$pLine); // 總頁數
+  $sql="SELECT `invoice`.`id`,`code`,`num`,RIGHT(`date`,5),`amount`,`contype`.`desCH`,`store`.`name`,`user_id` FROM `invoice`,`contype`,`store` WHERE `invoice`.`type`=`contype`.`type` && `contype`.`type`=`store`.`type` && `user_id`='{$user_id}' && `year`='{$year}' && `period`='{$period}' order by `date`"; // Mysql搜尋語法
+  $rows=selectSQL($sql); // 資料庫抓出的發票陣列
 
-  $_SESSION['year']=$year;
-  $_SESSION['period']=$period;
-  $_SESSION['pLine']=$pLine;
-  $_SESSION['inv']=$inv;
-  $_SESSION['col']=$col;
-  $_SESSION['columnN']=$columnN;
-  $_SESSION['t_inv']=$t_inv;
-  $_SESSION['t_col']=$t_col;
-  $_SESSION['pNum']=$pNum;
+
+  $t_inv=count($rows); // 定義：發票 總筆數
+  $t_col=count(array_keys($rows[0])); // 定義：欄位 個數
+  $pLine=10; // 定義：每頁行數
+  $pNum=ceil($t_inv/$pLine); //定義： 總頁數
+  $invs=array_chunk($rows,$pLine); // 定義：每頁的發票陣列 依照每頁行數分割成不同陣列
+
+  if(!empty($_GET['page'])){$page=$_GET['page'];}else{$page=1;} // 定義：畫面中 該頁頁數
+  if($page==$pNum){$pLine=$t_inv-($pNum-1)*$pLine;} // 定義：最後一頁行數
+  if(!empty($_GET['pNext'])){$pNext=$page+1;}else{$pNext=2;} if($pNext>$pNum){$pNext=$pNum;}// 定義：下頁頁數
+  if(!empty($_GET['pPre'])){$pPre=$page-1;}else{$pPre=1;} if($pPre<1){$pPre=1;} // 定義：上頁頁數
+  
+
+  echo "<hr>";
+  print_r($pLine);
+  // print_r($invs[1][8]);
+  echo "</hr>";
+
+
+  $col=(array_keys($invs[0][0])); // 定義：每張發票的key 陣列
+  $columnN=['id','字軌','號碼','日期','金額','消費類型','消費商家','user_id']; // column 中文描述
+
+/* 將運算完的值傳回畫面*/
+  $_SESSION['year']=$year; // 回傳：年份
+  $_SESSION['period']=$period; // 回傳：期別
+  $_SESSION['pLine']=$pLine; // 回傳：每頁行數
+  $_SESSION['page']=$page; // 回傳：畫面中 該頁頁數
+  $_SESSION['invs']=$invs; // 回傳：發票陣列[頁數][列]
+  $_SESSION['col']=$col; // 回傳：每張發票的key 陣列
+  $_SESSION['columnN']=$columnN; // 回傳：column 中文描述
+  $_SESSION['t_inv']=$t_inv; // 回傳： 發票 總筆數
+  $_SESSION['t_col']=$t_col; // 回傳： 欄位 個數
+  $_SESSION['pNum']=$pNum; // 回傳：總頁數
+  $_SESSION['pNext']=$pNext; // 回傳：下頁頁數
+  $_SESSION['pPre']=$pPre; // 回傳：上頁頁數
 
   go("./index.php?do=invoice_list");
+  
+
 ?>
 
 
