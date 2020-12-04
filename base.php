@@ -126,4 +126,86 @@ function errFeedBack($columnName){
   }
  // 輸出檢查後的error message
 
+ class InvDB{
+  private $dsn="mysql:host=localhost;dbname=invoicesys;charset=utf8";
+  private $pdo;
+  private $table;
+
+  public function __construct($table){
+    $this->table=$table; 
+    $this->pdo=new PDO($this->dsn,'root','');
+  }
+
+/** select one or multi lines                                                  **/
+/** whereDes must be array!!                                                   **/
+/** where descripton must be array && whereDes[0]                              **/
+/** use =[['col1'=>'val1','col2'=>'val2',...],'order by XX','limit 1,20',...]; **/
+  public function selectInv($whereDes){
+    $sql="select * from `$this->table`";
+      if(is_array($whereDes[0])){
+        foreach($whereDes[0] as $k=>$v){
+          $where[]=sprintf("`%s`='%s'",$k,$v);
+        }
+        $sql=$sql." where ".implode(" && ",$where);
+        if(count($whereDes)>1){
+          $i=(count($whereDes));
+          for($i>0;$i=0;$i--){
+            $sql=$sql." ".($whereDes[($i-1)]);
+          }
+        }
+    }else{
+      $i=(count($whereDes));
+      for($i>0;$i=0;$i--){
+        $sql=$sql." ".($whereDes[($i-1)]);
+      }
+    }
+    return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+  }  
+  public function deleteInv($whereDes){
+    $sql="delete form $this->table";
+    if(is_array($whereDes)){
+      foreach($whereDes as $k=>$v){
+        $tmp[]=sprintf("`%s`='%s'",$k,$v);
+      }
+      $sql=$sql." where ".implode(" && ",$tmp);
+    }elseif(!empty($whereDes)){
+      $sql=$sql."where ".$whereDes;
+    }
+    return $this->pdo->exec($sql);
+  } /** delete >> 將where/orderBy/limit 條件 以陣列方式加入 **/
+
+  public function addInv($colVal,$whereDes){
+    foreach($colVal as $k=>$v){
+      $col[]=$k;
+      $val[]=$v;
+    }
+    $sql="insert into `$this->table`(`".implode("`,`",$col)."`) values('".implode("','",$val)."')";
+    if(is_array($whereDes)){
+      foreach($whereDes as $k=>$v){
+        $tmp[]=sprintf("`%s`='%s'",$k,$v);
+      }
+      $sql=$sql." where ".implode(" && ",$tmp);
+    }elseif(!empty($whereDes)){
+      $sql=$sql."where ".$whereDes;
+    }
+    return $this->pdo->exec($sql);
+  } /** insert >> 將column/value where/orderBy/limit 條件 以陣列方式加入 **/
+
+  public function updateInv($colVal,$whereDes){
+    foreach($colVal as $k=>$v){
+      $set[]=sprintf("`%s`='%s'",$k,$v);
+    }
+    $sql="update `$this->table` set ".implode(",",$set);
+    if(is_array($whereDes)){
+      foreach($whereDes as $k=>$v){
+        $tmp[]=sprintf("`%s`='%s'",$k,$v);
+      }
+      $sql=$sql." where ".implode(" && ",$tmp);
+    }elseif(!empty($whereDes)){
+      $sql=$sql."where ".$whereDes;
+    }
+    return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+  } /** update >> 將column/value where/orderBy/limit 以陣列方式加入 **/
+}
+
 ?>
