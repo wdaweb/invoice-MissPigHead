@@ -33,3 +33,16 @@ body{
         font-size: 0.7rem;
     }
 }
+
+#invoiceList a:hover{
+    color: #dc3545;
+    text-decoration: none;
+    background-color: lightgoldenrodyellow;
+}
+#invoiceList a{
+    color: #acacac;
+}
+
+#invoiceList .page-link:hover{
+    background-color: powderblue;
+}
