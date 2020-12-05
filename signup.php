@@ -1,6 +1,9 @@
-<!-- 資料格式驗證：待老師教JavaScipt後補充 -->
-
-
+<?php
+include_once("base.php");
+if(!empty($_SESSION['acc'])){
+  go("./index.php?do=welcome");
+}
+?>
 <form class="container" action="./api/insert_user.php" method="post">
   <div class="row justify-content-center">
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
@@ -25,19 +28,27 @@
       <div class="input-group-prepend">
         <span class="input-group-text">生日</span>
       </div>
-      <input type="date" class="form-control" name="birth">
+      <input type="date" class="form-control" name="birth" required>
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">手機</span>
       </div>
-      <input type="number" class="form-control" name="tel" pattern="[0-9]{10}">
+      <input type="number" class="form-control" name="tel" pattern="[0-9]{10}" required>
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">Email</span>
       </div>
-      <input type="email" class="form-control" name="email">
+      <input type="email" class="form-control" name="email" required>
+    </div>
+    <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
+      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','accused');}?></span></div>
+      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','acc');}?></span></div>
+      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','pw');}?></span></div>
+      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','pw2');}?></span></div>
+      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','tel');}?></span></div>
+      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','email');}?></span></div>
     </div>
     <div class="col-6 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">註冊</button>
