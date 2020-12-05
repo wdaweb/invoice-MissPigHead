@@ -4,7 +4,7 @@ if(!empty($_SESSION['acc'])){
   go("./index.php?do=welcome");
 }
 ?>
-<form class="container" action="check_user.php" method="post">
+<form class="container" action="./api/check_user.php" method="post">
   <div class="row justify-content-center">
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
@@ -18,9 +18,9 @@ if(!empty($_SESSION['acc'])){
       </div>
       <input type="password" class="form-control" name="pw" placeholder="請輸入8~16字元英文或數字" required>
     </div>
-    <div class="col-sm-10 col-md-8 col-lg-6 my-2 justify-content-center mr-5 pr-5">
-      <span><?php if(!empty($_SESSION['err'])){errFeedBack('login','acc');}?></span>
-      <span><?php if(!empty($_SESSION['err'])){errFeedBack('login','pw');}?></span>
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-3">
+      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('login','acc');}?></span></div>
+      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('login','pw');}?></span></div>
     </div>
     <div class="col-sm-10 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">登入</button>
