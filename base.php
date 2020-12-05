@@ -3,7 +3,7 @@ $pdo=new PDO("mysql:host=localhost;dbname=invoicesys;charset=utf8",'root','');
 date_default_timezone_set("Asia/Taipei");
 session_start();
 
-function selectSQL($sql){
+function querySQLall($sql){
   global $pdo;
   return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 } // 寫好sql語法，“抓回”全部值
@@ -100,9 +100,7 @@ function whereDes($whereD1,$whereD2,$orderBy,$limitN){
   return $Des;
 } // 結合where, order by, limit 條件敘述
 
-function go($url){
-  header("location:".$url);
-} // 到指定程式或頁面
+function go($url){header("location:{$url}");} // 到指定程式或頁面
 
 function checkLen($columnName,$maxLen,$minLen){
   $Len=strlen($columnName);
@@ -119,9 +117,14 @@ function checkEmpty($columnName){
   }
 } // 檢查user是否未輸入
 
-function errFeedBack($columnName){
-    if(!empty($_SESSION['err'][$columnName])){
-      echo $_SESSION['err'][$columnName];
+function errFeedBack($page,$taget){ // 記得寫$_SESSION['err']時一定要寫三維
+    if(!empty($_SESSION['err'])){
+      foreach($_SESSION['err'] as $k=>$v){
+        $_SESSION['err'][$k]=$v;
+      }
+    }
+    if(isset($_SESSION['err'][$page][$taget])){
+    echo "*".$_SESSION['err'][$page][$taget];
     }
   }
  // 輸出檢查後的error message
