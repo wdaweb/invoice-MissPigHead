@@ -29,7 +29,7 @@ body{
 
 
 @media(max-width:576px){
-    .invoice-list-1-th{
+    #invoiceList .invoice-list-1-th, .text-07, .btn{
         font-size: 0.7rem;
     }
 }
@@ -39,10 +39,16 @@ body{
     text-decoration: none;
     background-color: lightgoldenrodyellow;
 }
+
 #invoiceList a{
     color: #acacac;
 }
 
 #invoiceList .page-link:hover{
     background-color: powderblue;
+}
+
+.errmsg{
+    color: darkred;
+    font-size: 0.7rem;
 }
