@@ -16,7 +16,9 @@
 ?>
 
 <div class="container text-center" id="invoiceList">
-<form action="./api/insert_invoice.php" method="post" >
+
+<!-- 選擇發票期別 -->
+<form action="./api/list_invoice.php" method="post" >
   <div class="row justify-content-center mx-1 mx-sm-3 my-1 my-sm-2">
     <div class="input-group col-4 col-md-3 px-0">
       <div class="input-group-prepend">
@@ -96,18 +98,18 @@
   <div>
 <!-- 選頁：當總頁數只有1頁時，不顯示分頁功能 -->
 <?php if($pNum>1){ ?> 
-    <form class="row justify-content-center mt-2" action="./list_invoice.php" method="post">
+    <form class="row justify-content-center mt-2" action="./api/list_invoice.php" method="post">
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link text-secondary" href="./list_invoice.php?page=<?=$pPre;?>"><<</a>
+          <a class="page-link text-secondary" href="./api/list_invoice.php?page=<?=$pPre;?>"><<</a>
         </li>
 <?php if($pNum>2){for($i=1;$i<=$pNum;$i++){?>
         <li class="page-item">
-          <a class="page-link text-secondary" href="./list_invoice.php?page=<?=$i;?>"><?=$i;?></a>
+          <a class="page-link text-secondary" href="./api/list_invoice.php?page=<?=$i;?>"><?=$i;?></a>
         </li>
 <?php } } ?>
         <li class="page-item">
-          <a class="page-link text-secondary" href="./list_invoice.php?page=<?=$pNext;?>">>></a>
+          <a class="page-link text-secondary" href="./api/list_invoice.php?page=<?=$pNext;?>">>></a>
         </li>
       </ul>
     </form>
