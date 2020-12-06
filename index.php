@@ -20,7 +20,7 @@
             <a class="dropdown-item text-white" href="./index.php?do=add_invoice">輸入發票資料</a>
             <!-- 參考寫到iframe的方式  <a href="results/leather1.html" target="imain"> -->
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" href="./index.php?do=list_invoice">發票列表及操作</a>
+            <a class="dropdown-item text-white" href="./api/list_invoice.php">發票列表及操作</a>
             <div class="dropdown-divider"></div>
             <!-- <a class="dropdown-item text-white" href="./index.php?do=">查詢特定發票</a>
             <div class="dropdown-divider"></div> -->
@@ -32,7 +32,7 @@
           <div class="dropdown-menu bg-secondary">
             <a class="dropdown-item text-white" href="./index.php?do=check_award">查詢開獎獎號</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" href="./index.php?do=check_reward">發票對獎</a>
+            <a class="dropdown-item text-white" href="./api/check_reward_all.php">發票對獎</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item text-white" href="./index.php?do=add_award">輸入開獎獎號</a>
           </div>
