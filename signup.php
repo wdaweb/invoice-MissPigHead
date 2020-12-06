@@ -43,12 +43,13 @@ if(!empty($_SESSION['acc'])){
       <input type="email" class="form-control" name="email" required>
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
-      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','accused');}?></span></div>
-      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','acc');}?></span></div>
-      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','pw');}?></span></div>
-      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','pw2');}?></span></div>
-      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','tel');}?></span></div>
-      <div><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','email');}?></span></div>
+      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','accused');}?></span></div>
+      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','acc');}?></span></div>
+      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','pw');}?></span></div>
+      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','pw2');}?></span></div>
+      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','birth');}?></span></div>
+      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','tel');}?></span></div>
+      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','email');}?></span></div>
     </div>
     <div class="col-6 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">註冊</button>
@@ -56,3 +57,6 @@ if(!empty($_SESSION['acc'])){
     </div>
   </div>
 </form>  
+<?php
+  unset($_SESSION['err']);                         
+?> 

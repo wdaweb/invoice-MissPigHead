@@ -12,42 +12,44 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item mx-1">
-          <a class="nav-link" href="./index.php">回首頁 <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="./index.php">回首頁</a>
         </li>
         <li class="nav-item dropdown mx-1">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">發票管理及消費紀錄</a>
           <div class="dropdown-menu bg-secondary">
-            <a class="dropdown-item text-white" href="./index.php?do=add_invoice">輸入發票資料</a>
+<a class="dropdown-item text-white" <?php if(!empty($_SESSION['acc'])){?>href="./index.php?do=add_invoice"<?php }?>>輸入發票資料</a>
             <!-- 參考寫到iframe的方式  <a href="results/leather1.html" target="imain"> -->
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" href="./api/list_invoice.php">發票列表及操作</a>
+            <a class="dropdown-item text-white" <?php if(!empty($_SESSION['acc'])){?>href="./api/select_invoice_all.php"<?php }?>>發票列表及操作</a>
             <div class="dropdown-divider"></div>
             <!-- <a class="dropdown-item text-white" href="./index.php?do=">查詢特定發票</a>
             <div class="dropdown-divider"></div> -->
-            <a class="dropdown-item text-white" href="./index.php?do=summary_invoice">統計消費紀錄</a>
+            <a class="dropdown-item text-white" <?php if(!empty($_SESSION['acc'])){?>href="./index.php?do=summary_invoice"<?php }?>>統計消費紀錄</a>
           </div>
         </li>
         <li class="nav-item dropdown mx-1">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">開獎號碼及對獎</a>
           <div class="dropdown-menu bg-secondary">
-            <a class="dropdown-item text-white" href="./index.php?do=check_award">查詢開獎獎號</a>
+            <a class="dropdown-item text-white" href="./api/select_award.php">查詢開獎獎號</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item text-white" href="./api/check_reward_all.php">發票對獎</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" href="./index.php?do=add_award">輸入開獎獎號</a>
+            <a class="dropdown-item text-white" <?php if(!empty($_SESSION['acc'])){?>href="./index.php?do=add_award"<?php }?>>輸入開獎獎號</a>
           </div>
         </li>
         <li class="nav-item dropdown mx-1">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">使用者資料管理</a>
           <div class="dropdown-menu bg-secondary">
-            <a class="dropdown-item text-white" href="./index.php?do=edit_user">編輯個人資料</a>
+            <a class="dropdown-item text-white" <?php if(!empty($_SESSION['acc'])){?>href="./api/update_user.php"<?php }?>>編輯個人資料</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" href="./index.php?do=reward_record">查詢得獎記錄</a>
+            <a class="dropdown-item text-white" <?php if(!empty($_SESSION['acc'])){?>href="./index.php?do=reward_record"<?php }?>>查詢得獎記錄</a>
           </div>
         </li>
-        <?php if(!empty($_SESSION['acc'])){ ?>
+        <?php if(empty($_SESSION['acc'])){ ?>
           <li class="nav-item mx-1">
-            <a class="nav-link" href="./logout_user.php" role="button">登入/登出</a>
+            <a class="nav-link" href="./index.php?do=login" role="button">登入</a>
+        <?php }else{ ?>
+            <a class="nav-link" href="./api/logout_user.php" role="button">登出</a>
           </li>
         <?php } ?>
       </ul>
@@ -62,7 +64,7 @@
         $file=$_GET['do'].".php";
         include $file;
       }else{
-        include "login.php";
+        include("./login.php");
       }
     ?>
   </div>

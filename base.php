@@ -8,6 +8,11 @@ function querySQLall($sql){
   return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 } // 寫好sql語法，“抓回”全部值
 
+function execSQLall($sql){
+  global $pdo;
+  return $pdo->exec($sql);
+} // 寫好sql語法，“抓回”全部值
+
 function actSQL($action,$tableName,$columnValue,$whereDes){
   global $pdo;
   if(!empty($columnValue)){

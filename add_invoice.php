@@ -1,6 +1,9 @@
-<!-- 資料格式驗證：待老師教JavaScipt後補充 -->
+<?php
+  include_once "./base.php";
+?>
 <form class="container" action="./api/insert_invoice.php" method="post">
   <div class="row justify-content-center">
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2 h5 font-weight-bold text-center">輸入發票紀錄</div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group col-md-5 mx-0 px-0">
         <div class="input-group-prepend">
@@ -21,12 +24,12 @@
       </div>
       <input type="date" class="form-control" name="date" required>
     </div>
-    <!-- <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
+    <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">發票年度</span>
       </div>
-      <input type="number" class="form-control" name="year" placeholder="請重新輸入密碼" required>
-    </div> -->
+      <input type="number" class="form-control" name="year">
+    </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">對獎月份</span>
@@ -70,13 +73,6 @@
       </div>
       <input type="text" class="form-control" name="store">
     </div>
-    <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
-      <div class="input-group-prepend">
-        <span class="input-group-text">其他備註</span>
-      </div>
-      <input type="text" class="form-control" name="other">
-    </div>
-    <!-- acc 帳號 隱藏欄位 <input type="number" class="form-control" name="acc"> -->
     <div class="col-6 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">送出</button>
       <button type="reset" class="btn btn-warning mx-2">重填</button>
