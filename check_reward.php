@@ -3,6 +3,7 @@
   $year=$_SESSION['year'];
   $periodA=$_SESSION['periodA'];
   $periodCH=$_SESSION['periodCH'];
+  $t_res=$_SESSION['t_res'];
 // print_r($_SESSION)
   // $pLine=$_SESSION['pLine'];
   // $page=$_SESSION['page'];
@@ -54,9 +55,15 @@ if(!empty($_SESSION['acc'])){
       <button type="submit" class="btn btn-info mx-2">送出</button>
       <button type="reset" class="btn btn-warning mx-2">重填</button>
     </div>
+    <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
+      <?php if(!empty($_SESSION['rewardA'])){for($i=0;$i<$t_res;$i++){?><div><span class="reward-C">恭喜您在<?=$_SESSION['rewardA'][$i]['year'];?>年
+      <?=$periodCH[$_SESSION['rewardA'][$i]['period']];?>中獎！<br>獎項為<span class="text-danger font-weight-bolder"><?=$_SESSION['rewardA'][$i]['name'];?></span>，號碼為<span class="text-danger font-weight-bolder"><?=$_SESSION['rewardA'][$i]['num'];?></span>
+      <br>獎金為<?=$_SESSION['rewardA'][$i]['amountC'];?>！</span>
+    </div><?php }}?>
   </div>
 </form>
 <?php }?>
+
 
 <!-- 輸入單張發票號碼兌獎，這可以不鎖帳戶 -->
 <form class="container" action="./api/reward/check_reward_single.php" method="post">
@@ -112,4 +119,5 @@ if(!empty($_SESSION['acc'])){
 <?php
 unset($_SESSION['err']);
 unset($_SESSION['reward']);
+unset($_SESSION['rewardA']);
 ?>
