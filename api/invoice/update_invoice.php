@@ -19,11 +19,7 @@ $sql="update invoice
     where `id`='{$_POST['id']}'";
 
 $chk=$pdo->exec($sql);
-if($chk){
     $_SESSION['err']['edit_invoice']['done']="{$_POST['code']}-{$_POST['num']}更新成功";
     header("location：./../../index.php?do=edit_invoice");
-}else{
-    print_r($sql);
-    echo "check again";}
 
 ?>
