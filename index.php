@@ -42,7 +42,7 @@
           <div class="dropdown-menu bg-secondary">
             <a class="dropdown-item text-white" href="./api/user/update_user.php">編輯個人資料</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-white" <?php if(!empty($_SESSION['acc'])){?>href="./index.php?do=reward_record"<?php }?>>查詢得獎記錄</a>
+            <a class="dropdown-item text-white" <?php if(!empty($_SESSION['acc'])){?>href="./api/reward/select_reward_record.php"<?php }?>>查詢得獎記錄</a>
           </div><?php }?>
         </li>
         <?php if(empty($_SESSION['acc'])){ ?>
