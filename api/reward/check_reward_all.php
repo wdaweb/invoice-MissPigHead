@@ -31,17 +31,21 @@
   `award`.`type`=`prize`.`type`";
 
   $res=querySQLall($sql);
-  $t_res=count($res);
+  $t_res=count($res);               // 定義：該期中獎發票的張數
   if($t_res>0){
     foreach($res as $re){
     $sql2="INSERT INTO `record`(`user_id`, `inv_id`, `award_id`) VALUES ('{$re['user_id']}','{$re['id']}','{$re['a_id']}')";
-    execSQLall($sql2);
-    $_SESSION['reward'][]=$re;
+    execSQLall($sql2);              // 定義：把 每筆中獎發票 存入發票清單
+    $_SESSION['reward'][]=$re;      // 回傳：中獎發票陣列
     go("./../../index.php?do=reward_record");
+    }                               // 定義：把 每筆中獎發票 存入$_SESSION['reward']陣列
+    for($i=0;$i<$t_res;$i++){      
+      $a_rew+=$re[$i]['amount'];    // 定義：該期總中獎金額
     }
-  }else{
+  }elseif(($t_res==0)&&!empty($_POST['year'])&&!empty($_POST['periodA'])){
     $_SESSION['err']['check_reward']['no']="*很抱歉，您在{$_POST['year']}年{$periodCH[$_POST['periodA']]}未中獎";
-  }
+                                    // 定義：未中獎回覆確認
+  } 
 
 
 
@@ -51,9 +55,9 @@
   /* 將運算完的值傳回畫面*/
   $_SESSION['year']=$year; // 回傳：年份
   $_SESSION['periodA']=$periodA; // 回傳：期別
-  $_SESSION['periodCH']=$periodCH; // 回傳：
-  // $_SESSION['pLine']=$pLine; // 回傳：每頁行數
-  // $_SESSION['page']=$page; // 回傳：畫面中 該頁頁數
+  $_SESSION['periodCH']=$periodCH; // 回傳：月份中文
+  $_SESSION['$t_res']=$t_res; // 回傳：中獎發票張數
+  $_SESSION['a_rew']=$a_rew; // 回傳：該期總中獎金額
   // $_SESSION['invs']=$invs; // 回傳：發票陣列[頁數][列]
   // $_SESSION['col']=$col; // 回傳：每張發票的key 陣列
   // $_SESSION['columnN']=$columnN; // 回傳：column 中文描述

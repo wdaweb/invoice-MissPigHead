@@ -38,32 +38,32 @@ for($i=0;$i<3;$i++){
     if($_POST['sp_prize'][$i]=="1M"){
         $sp_1M_num[]='';
         if(empty($_POST['sp_num'][$i])){
-            $_SESSION['err']['add_award']['sp1M']="請確認是否增加特獎獎號";
+            $_SESSION['err']['add_award']['sp1M'][$i]="請確認是否增加特獎獎號";
         }elseif(!preg_match("/[0-9]{8}/",$_POST['sp_num'][$i])){
-            $_SESSION['err']['add_award']['sp1M']="特獎獎號應為8位數字";
+            $_SESSION['err']['add_award']['sp1M'][$i]="特獎獎號應為8位數字";
         }else{
             $sp_1M_num[]=$_POST['sp_num'][$i];
         }
     }elseif($_POST['sp_prize'][$i]=="1"){
         $sp_1_num[]='';         
         if(empty($_POST['sp_num'][$i])){
-            $_SESSION['err']['add_award']['sp1']="請確認是否增加頭獎獎號";
+            $_SESSION['err']['add_award']['sp1'][$i]="請確認是否增加頭獎獎號";
         }elseif(!preg_match("/[0-9]{8}/",$_POST['sp_num'][$i])){
-            $_SESSION['err']['add_award']['sp1']="頭獎獎號應為8位數字";
+            $_SESSION['err']['add_award']['sp1'][$i]="頭獎獎號應為8位數字";
         }else{
             $sp_1_num[]=$_POST['sp_num'][$i];         
         }
     }elseif($_POST['sp_prize'][$i]=="6A"){
         $sp_6A_num[]='';                        
         if(empty($_POST['sp_num'][$i])){
-            $_SESSION['err']['add_award']['sp6A']="請確認是否增加六獎獎號";
+            $_SESSION['err']['add_award']['sp6A'][$i]="請確認是否增加六獎獎號";
         }elseif(!preg_match("/[0-9]{3}/",$_POST['sp_num'][$i])){
-            $_SESSION['err']['add_award']['sp6A']="增開六獎獎號應為3位數字";
+            $_SESSION['err']['add_award']['sp6A'][$i]="增開六獎獎號應為3位數字";
         }else{
             $sp_6A_num[]=$_POST['sp_num'][$i];                        
         }
     }elseif(empty($_POST['sp_prize'][$i]=='') && !empty($_POST['sp_num'][$i])){
-        $_SESSION['err']['add_award']['sp']="請選擇增加的獎項";
+        $_SESSION['err']['add_award']['sp'][$i]="請選擇增加的獎項";
     }
 }
 
