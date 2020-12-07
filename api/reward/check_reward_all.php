@@ -99,6 +99,8 @@ LEFT(`invoice`.`num`,4)=`award`.`num` &&
   echo "</pre>";
   if($t_res>0){
     foreach($resAll as $re){
+    $sql1="select * from `record` where `inv_id`='{$re['id']}'";
+    if(empty(querySQLall($sql1))){
     $sql2="INSERT INTO `record`(`user_id`, `inv_id`, `award_id`) VALUES ('{$re['user_id']}','{$re['id']}','{$re['a_id']}')";
     execSQLall($sql2);              // 定義：把 每筆中獎發票 存入發票清單
     $_SESSION['rewardA'][]=$re;      // 回傳：中獎發票陣列
@@ -106,7 +108,7 @@ LEFT(`invoice`.`num`,4)=`award`.`num` &&
     }                               // 定義：把 每筆中獎發票 存入$_SESSION['reward']陣列
     for($i=0;$i<$t_res;$i++){      
       $a_rew+=$re[$i]['amount'];    // 定義：該期總中獎金額
-    }
+    }}
   }elseif(($t_res==0)&&!empty($_POST['year'])&&!empty($_POST['periodA'])){
     $_SESSION['err']['check_reward']['no']="*很抱歉，您在{$_POST['year']}年{$periodCH[$_POST['periodA']]}未中獎";
                                     // 定義：未中獎回覆確認
