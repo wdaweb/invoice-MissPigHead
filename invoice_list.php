@@ -69,14 +69,14 @@
     ?>
   </ul>
   <!-- 列出發票 -->
-  <form action="./api/select_invoice_single.php" method="post"> 
+  <form action="./api/invoice/select_invoice_single.php" method="post"> 
     <?php
       for($i=0;$i<$pLine;$i++){
         echo "<ul class='list-group row mx-lg-3 list-group-horizontal'>
         ";
         for($j=0;$j<$t_col;$j++){
           if($j==1){
-            echo "<li class='list-group-item col-1 px-0 invoice-list-".$j."'><a href='./api/select_invoice_single.php?id=".$invs[($page-1)][$i][$col[($j-1)]]."'><i class='far fa-check-square'></i></a></li>";          
+            echo "<li class='list-group-item col-1 px-0 invoice-list-".$j."'><a href='./api/invoice/select_invoice_single.php?id=".$invs[($page-1)][$i][$col[($j-1)]]."'><i class='far fa-check-square'></i></a></li>";          
           }elseif($j==2){
             echo "<li class='list-group-item col-5 col-sm-3 col-md-3 px-1 invoice-list-".$j."'>".$invs[($page-1)][$i][$col[($j-1)]]."-".$invs[($page-1)][$i][$col[$j]]."</li>";
           }elseif($j==3){

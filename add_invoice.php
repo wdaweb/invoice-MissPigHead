@@ -18,18 +18,30 @@
         <input type="text" class="form-control" name="num" placeholder="請輸入8位數字" required>
       </div>
     </div>
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5">
+        <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('add_invoice','num');?></span></div><?php }?>
+      </div>
+      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5">
+        <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('add_invoice','code');?></span></div><?php }?>
+      </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">發票日期</span>
       </div>
       <input type="date" class="form-control" name="date" required>
     </div>
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5">
+        <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('add_invoice','date');?></span></div><?php }?>
+      </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">發票年度</span>
       </div>
       <input type="number" class="form-control" name="year" required>
     </div>
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5">
+        <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('add_invoice','year');?></span></div><?php }?>
+      </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">對獎月份</span>
@@ -44,6 +56,9 @@
         <option value="6">11 ~ 12 月</option>
       </select>
     </div>
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5">
+        <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('add_invoice','period');?></span></div><?php }?>
+      </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">發票金額</span>
@@ -73,9 +88,15 @@
       </div>
       <input type="text" class="form-control" name="store">
     </div>
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5">
+        <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('add_invoice','done');?></span></div><?php }?>
+      </div>
     <div class="col-6 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">送出</button>
       <button type="reset" class="btn btn-warning mx-2">重填</button>
     </div>
   </div>
 </form>  
+<?php
+  unset($_SESSION['err']);                         
+?> 
