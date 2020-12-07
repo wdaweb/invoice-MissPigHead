@@ -28,15 +28,80 @@
   `invoice`.`num`=`award`.`num` && 
   `invoice`.`year`=`award`.`year` && `invoice`.`year`='{$year}' &&
   `award`.`period`=`invoice`.`period` && `invoice`.`period`='{$periodA}' &&
-  `award`.`type`=`prize`.`type`";
-
+  `award`.`type`=`prize`.`type`"; // 特別獎, 特獎, 頭獎 (8碼)
   $res=querySQLall($sql);
-  $t_res=count($res);               // 定義：該期中獎發票的張數
+
+  $sql2=
+  "SELECT `invoice`.`id`,`invoice`.`num`,`invoice`.`year`,`invoice`.`period`,`invoice`.`user_id`,
+  `award`.`a_id`,`award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,
+  `prize`.`name`,`prize`.`amount`,`prize`.`amountC`
+  FROM `invoice`,`award`,`prize` 
+  WHERE `user_id`='{$user_id}' &&
+  LEFT(`invoice`.`num`,7)=`award`.`num` && 
+  `invoice`.`year`=`award`.`year` && `invoice`.`year`='{$year}' &&
+  `award`.`period`=`invoice`.`period` && `invoice`.`period`='{$periodA}'
+  && `award`.`type`=`prize`.`type`"; // 二獎 (7碼)
+  $res2=querySQLall($sql2);
+
+$sql3=
+"SELECT `invoice`.`id`,`invoice`.`num`,`invoice`.`year`,`invoice`.`period`,`invoice`.`user_id`,
+`award`.`a_id`,`award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,
+`prize`.`name`,`prize`.`amount`,`prize`.`amountC`
+FROM `invoice`,`award`,`prize` 
+WHERE `user_id`='{$user_id}' &&
+LEFT(`invoice`.`num`,6)=`award`.`num` && 
+`invoice`.`year`=`award`.`year` && `invoice`.`year`='{$year}' &&
+`award`.`period`=`invoice`.`period` && `invoice`.`period`='{$periodA}'
+&& `award`.`type`=`prize`.`type`"; // /三獎 (6碼)
+  $res3=querySQLall($sql3);
+
+$sql4=
+"SELECT `invoice`.`id`,`invoice`.`num`,`invoice`.`year`,`invoice`.`period`,`invoice`.`user_id`,
+`award`.`a_id`,`award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,
+`prize`.`name`,`prize`.`amount`,`prize`.`amountC`
+FROM `invoice`,`award`,`prize` 
+WHERE `user_id`='{$user_id}' &&
+LEFT(`invoice`.`num`,5)=`award`.`num` && 
+`invoice`.`year`=`award`.`year` && `invoice`.`year`='{$year}' &&
+`award`.`period`=`invoice`.`period` && `invoice`.`period`='{$periodA}'
+&& `award`.`type`=`prize`.`type`"; // 四獎 (5碼)
+  $res4=querySQLall($sql4);
+
+$sql5=
+"SELECT `invoice`.`id`,`invoice`.`num`,`invoice`.`year`,`invoice`.`period`,`invoice`.`user_id`,
+`award`.`a_id`,`award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,
+`prize`.`name`,`prize`.`amount`,`prize`.`amountC`
+FROM `invoice`,`award`,`prize` 
+WHERE `user_id`='{$user_id}' &&
+LEFT(`invoice`.`num`,4)=`award`.`num` && 
+`invoice`.`year`=`award`.`year` && `invoice`.`year`='{$year}' &&
+`award`.`period`=`invoice`.`period` && `invoice`.`period`='{$periodA}'
+&& `award`.`type`=`prize`.`type`"; // 五獎 (4碼)
+  $res5=querySQLall($sql5);
+
+$sql6=
+"SELECT `invoice`.`id`,`invoice`.`num`,`invoice`.`year`,`invoice`.`period`,`invoice`.`user_id`,
+`award`.`a_id`,`award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,
+`prize`.`name`,`prize`.`amount`,`prize`.`amountC`
+FROM `invoice`,`award`,`prize` 
+WHERE `user_id`='{$user_id}' &&
+LEFT(`invoice`.`num`,4)=`award`.`num` && 
+`invoice`.`year`=`award`.`year` && `invoice`.`year`='{$year}' &&
+`award`.`period`=`invoice`.`period` && `invoice`.`period`='{$periodA}'
+&& `award`.`type`=`prize`.`type`"; // 六獎與增開六獎 (3碼)
+  $res6=querySQLall($sql6);
+
+  $resAll=array_merge($res,$res2,$res3,$res4,$res5,$res6);
+
+  echo "<pre>";
+  print_r($resAll);
+  $t_res=count($resAll);
+  echo "</pre>";
   if($t_res>0){
-    foreach($res as $re){
+    foreach($resAll as $re){
     $sql2="INSERT INTO `record`(`user_id`, `inv_id`, `award_id`) VALUES ('{$re['user_id']}','{$re['id']}','{$re['a_id']}')";
     execSQLall($sql2);              // 定義：把 每筆中獎發票 存入發票清單
-    $_SESSION['reward'][]=$re;      // 回傳：中獎發票陣列
+    $_SESSION['rewardA'][]=$re;      // 回傳：中獎發票陣列
     go("./../../index.php?do=reward_record");
     }                               // 定義：把 每筆中獎發票 存入$_SESSION['reward']陣列
     for($i=0;$i<$t_res;$i++){      
@@ -56,8 +121,8 @@
   $_SESSION['year']=$year; // 回傳：年份
   $_SESSION['periodA']=$periodA; // 回傳：期別
   $_SESSION['periodCH']=$periodCH; // 回傳：月份中文
-  $_SESSION['$t_res']=$t_res; // 回傳：中獎發票張數
-  $_SESSION['a_rew']=$a_rew; // 回傳：該期總中獎金額
+  $_SESSION['t_res']=$t_res; // 回傳：中獎發票張數
+  // $_SESSION['resAll']=$resAll; // 回傳：該期總中獎金額
   // $_SESSION['invs']=$invs; // 回傳：發票陣列[頁數][列]
   // $_SESSION['col']=$col; // 回傳：每張發票的key 陣列
   // $_SESSION['columnN']=$columnN; // 回傳：column 中文描述
