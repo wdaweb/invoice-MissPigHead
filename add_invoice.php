@@ -1,7 +1,7 @@
 <?php
   include_once "./base.php";
 ?>
-<form class="container" action="./api/insert_invoice.php" method="post">
+<form class="container" action="./api/invoice/insert_invoice.php" method="post">
   <div class="row justify-content-center">
     <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2 h5 font-weight-bold text-center">輸入發票紀錄</div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
@@ -28,13 +28,13 @@
       <div class="input-group-prepend">
         <span class="input-group-text">發票年度</span>
       </div>
-      <input type="number" class="form-control" name="year">
+      <input type="number" class="form-control" name="year" required>
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">對獎月份</span>
       </div>
-      <select type="number" class="form-control" name="period">
+      <select type="number" class="form-control" name="period" required>
       <option value="">- 請選擇 -</option>
         <option value="1">01 ~ 02 月</option>
         <option value="2">03 ~ 04 月</option>

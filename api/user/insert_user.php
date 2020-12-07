@@ -1,5 +1,5 @@
 <?php
-include_once "../base.php";
+include_once "./../../base.php";
 
 $sql1="select * from `user` where `acc`='{$_POST['acc']}'";
 $res=querySQLall($sql1);
@@ -15,6 +15,6 @@ if(!empty($_SESSION['err'])){go("../index.php?do=signup");}else{
 $sql2="insert into `user`(`acc`,`pw`,`birth`,`tel`,`email`) values('".$_POST['acc']."','".$_POST['pw']."','".$_POST['birth']."','".$_POST['tel']."','".$_POST['email']."')";
 $addU=querySQLall($sql2);
 $_SESSION['acc']=$_POST['acc'];
-go("../index.php?do=add_invoice");
+go("./../../index.php?do=add_invoice");
 }
 ?>

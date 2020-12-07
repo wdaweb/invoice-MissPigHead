@@ -16,7 +16,7 @@
 <div class="container" id="awardList">
   <div class="row justify-content-center">
     <div class="col-12 col-sm-10 col-md-8 col-lg-6 mx-md-5 px-0 mt-2 text-center h5 font-weight-bold">開獎期別</div>
-    <form class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2 row justify-content-center" action="./api/select_award.php" method="post">
+    <form class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2 row justify-content-center" action="./api/award/select_award.php" method="post">
       <div class="input-group col-5 mx-0 px-0">
         <div class="input-group-prepend">
           <span class="input-group-text px-1 px-sm-2 px-md-3 text-xxs-08">年度</span>

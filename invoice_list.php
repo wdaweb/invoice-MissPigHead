@@ -18,7 +18,7 @@
 <div class="container text-center" id="invoiceList">
 
 <!-- 選擇發票期別 -->
-<form action="./api/select_invoice_all.php" method="post" >
+<form action="./api/invoice/select_invoice_all.php" method="post" >
   <div class="row justify-content-center mx-1 mx-sm-3 my-1 my-sm-2">
     <div class="input-group col-4 col-md-3 px-0">
       <div class="input-group-prepend">
@@ -40,8 +40,8 @@
         <option value="6">11 ~ 12 月</option>
       </select>
     </div>
-    <div class="input-group col-2 px-0">
-      <button type="submit" class="btn btn-info px-1 px-sm-2 px-md-3">送出</button>
+    <div class="input-group col-2 px-0 d-flex justify-content-center">
+      <button type="submit" class="btn btn-info px-1 px-sm-2 px-md-4 px-lg-5">送出</button>
     </div>
   </div>
 </form>  

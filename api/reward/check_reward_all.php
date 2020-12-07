@@ -1,33 +1,27 @@
 <?php
-  include_once "../base.php";
+  include_once "./../../base.php";
+  $user_id=$_SESSION['id'];
+  $_SESSION['err']=[];
 
-  if(empty($_SESSION['acc'])){
-    go("./index.php");
-  }else{
-    $acc=$_SESSION['acc'];
-    $user_id=$_SESSION['id']; // 定義：user
-  }
-  
-  if(empty($_POST['year'])){
+  if(!isset($_POST['year'])){
     $year=date('Y');
   }else{
     $year=$_POST['year'];}; // 定義：年份
 
-  if(empty($_POST['period'])){
+  if(empty($_POST['periodA'])){
     $periodA=ceil(date('m')/2)-1;
-  }elseif($_POST['period']==ceil(date('m')/2)){
+  }elseif((($_POST['periodA']==ceil(date('m')/2))&& ($year==date('Y'))) || ($year>date('Y'))){
     $_SESSION['err']['check_reward']['periodAS']="該期發票尚未開獎";
-    $periodA=$_POST['period'];
-  }elseif($_POST['period']==(ceil(date('m')/2)-3)){
+    $periodA=$_POST['periodA'];
+  }elseif((($_POST['periodA']<=(ceil(date('m')/2)-3))&& ($year==date('Y')))||($year<date('Y'))){
     $_SESSION['err']['check_reward']['periodAS']="該期發票已過兌獎期限";
-    $periodA=$_POST['period'];
-  }else{$periodA=$_POST['period'];}; // 定義：期別
+    $periodA=$_POST['periodA'];
+  }else{$periodA=$_POST['periodA'];}; // 定義：期別
 
   $periodCH=['','1月~2月','3月~4月','5月~6月','7月~8月','9月~10月','11月~12月']; // 定義：月份中文
-if(preg_match("/[0-9]{8}/",$_POST['num'])){
   $sql=
   "SELECT `invoice`.`id`,`invoice`.`num`,`invoice`.`year`,`invoice`.`period`,`invoice`.`user_id`,
-  `award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,
+  `award`.`a_id`,`award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,
   `prize`.`type`,`prize`.`name`,`prize`.`amount`,`prize`.`amountC`
   FROM `invoice`,`award`,`prize` 
   WHERE `user_id`='{$user_id}' &&
@@ -37,7 +31,23 @@ if(preg_match("/[0-9]{8}/",$_POST['num'])){
   `award`.`type`=`prize`.`type`";
 
   $res=querySQLall($sql);
-  print_r($res);
+  $t_res=count($res);
+  if($t_res>0){
+    foreach($res as $re){
+    $sql2="INSERT INTO `record`(`user_id`, `inv_id`, `award_id`) VALUES ('{$re['user_id']}','{$re['id']}','{$re['a_id']}')";
+    execSQLall($sql2);
+    $_SESSION['reward'][]=$re;
+    go("./../../index.php?do=reward_record");
+    }
+  }else{
+    $_SESSION['err']['check_reward']['no']="*很抱歉，您在{$_POST['year']}年{$periodCH[$_POST['periodA']]}未中獎";
+  }
+
+
+
+  echo "<hr>1";
+  // print_r($res);
+  echo "<hr>2";
   /* 將運算完的值傳回畫面*/
   $_SESSION['year']=$year; // 回傳：年份
   $_SESSION['periodA']=$periodA; // 回傳：期別
@@ -52,9 +62,9 @@ if(preg_match("/[0-9]{8}/",$_POST['num'])){
   // $_SESSION['pNum']=$pNum; // 回傳：總頁數
   // $_SESSION['pNext']=$pNext; // 回傳：下頁頁數
   // $_SESSION['pPre']=$pPre; // 回傳：上頁頁數
-}else{
-  $_SESSION['err']['check_reward']['num']="發票號碼應為8位數字";
-}
-  go("../index.php?do=check_reward");
-  // print_r();
+
+  go("./../../index.php?do=check_reward");
+  echo "<pre>";
+  print_r($_SESSION);
+  echo "</pre>";
 ?>

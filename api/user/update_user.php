@@ -1,12 +1,11 @@
 <?php
-include_once "../base.php";
+include_once "./../../base.php";
 
-print_r($_SESSION);
-
-$sql1="select * from `user` where `acc`='{$_SESSION['acc']}'";
-$user=querySQLall($sql1);
-
-
+$sql="select * from `user` where `acc`='{$_SESSION['acc']}'";
+$u=querySQLall($sql);
+$user=$u[0];
+// print_r($u);
+// print_r($user);
 if(!empty($_POST)){
 if(!preg_match("/[A-Za-z0-9]{8,16}/",$_POST['pw'])){$_SESSION['err']['signup']['pw']="請檢查密碼格式";}
 if(strtotime($_POST['birth'])>strtotime('now')){$_SESSION['err']['signup']['birth']="這天還沒到哦！請重新輸入";}
@@ -18,9 +17,10 @@ if(!empty($_POST) && empty($_SESSION['err'])){
   $sql2="UPDATE `user` SET `pw`='{$_POST['pw']}',`birth`='{$_POST['birth']}',`tel`='{$_POST['tel']}',`email`='{$_POST['email']}' WHERE `acc`='{$_POST['acc']}'";
   execSQLall($sql2);
   $_SESSION['user']=$user;
-  go("../index.php?do=add_invoice");
+  go("./../../index.php?do=add_invoice");
 }else{
-  go("../index.php?do=edit_user");
+  $_SESSION['user']=$user;
+  go("./../../index.php?do=edit_user");
 }
 
 ?>

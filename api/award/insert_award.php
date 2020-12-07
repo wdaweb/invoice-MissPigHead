@@ -1,5 +1,5 @@
 <?php
-include_once "../base.php";
+include_once "./../../base.php";
 
 if(($_POST['year']>$year=date('Y'))||(($_POST['year']==$year=date('Y'))&&($_POST['period']>ceil(date('m')/2)))){
     $_SESSION['err']['add_award']['notyet']="時間未到，請再確認";
@@ -102,6 +102,6 @@ echo "<hr>";
 
 print_r($_SESSION);
     
-go("../index.php?do=add_award");
+go("./../../index.php?do=add_award");
 
 ?>

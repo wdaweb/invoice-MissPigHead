@@ -1,17 +1,17 @@
 <?php
-  include_once "../base.php";
-  unset($_SESSION['year']);             
-  unset($_SESSION['periodA']);        
-  unset($_SESSION['rows_1K']);      
-  unset($_SESSION['rows_1M']);        
-  unset($_SESSION['rows_6A']);      
-  unset($_SESSION['rows_1']);      
-  unset($_SESSION['rows_p']);        
-  unset($_SESSION['pNextA']);     
-  unset($_SESSION['pPreA']);        
-  unset($_SESSION['periodCHA']);    
-  unset($_SESSION['t_6A']);                              
-  $_SESSION['err']=[];     
+  include_once "./../../base.php";
+  // unset($_SESSION['year']);             
+  // unset($_SESSION['periodA']);        
+  // unset($_SESSION['rows_1K']);      
+  // unset($_SESSION['rows_1M']);        
+  // unset($_SESSION['rows_6A']);      
+  // unset($_SESSION['rows_1']);      
+  // unset($_SESSION['rows_p']);        
+  // unset($_SESSION['pNextA']);     
+  // unset($_SESSION['pPreA']);        
+  // unset($_SESSION['periodCHA']);    
+  // unset($_SESSION['t_6A']);                              
+  // $_SESSION['err']=[];     
   // unset($_SESSION['col']);
   // unset($_SESSION['year']);
   // unset($_SESSION['page']);
@@ -124,7 +124,7 @@ if((((($periodA*2+1)>date('m'))||((($periodA*2+1)==date('m')) && (date('d')<25))
 //   $_SESSION['t_col']=$t_col; // 回傳： 欄位 個數
 //   $_SESSION['pNum']=$pNum; // 回傳：總頁數
 
-  go("../index.php?do=award_list");
+  go("./../../index.php?do=award_list");
 
   print_r($_SESSION);
   echo "<hr>";

@@ -1,27 +1,6 @@
 <?php
-  include_once "../base.php";
-
-  unset($_SESSION['col']);
-  unset($_SESSION['year']);
-  unset($_SESSION['page']);
-  unset($_SESSION['invs']);
-  unset($_SESSION['pNum']);
-  unset($_SESSION['pLine']);
-  unset($_SESSION['t_inv']);
-  unset($_SESSION['t_col']);
-  unset($_SESSION['period']);
-  unset($_SESSION['periodCH']);
-  unset($_SESSION['columnN']);
-  unset($_SESSION['pNext']);
-  unset($_SESSION['pPre']);
-
-  if(empty($_SESSION['acc'])){
-    go("../index.php");
-  }else{
-    $acc=$_SESSION['acc'];
-    $user_id=$_SESSION['id']; // 定義：user
-  }
-  
+  include_once "./../../base.php";
+  $user_id=$_SESSION['id'];
   if(empty($_POST['year'])){$year=date('Y');}else{$year=$_POST['year'];}; // 定義：年份
   if(empty($_POST['period'])){$period=ceil(date('m')/2);}else{$period=$_POST['period'];}; // 定義：期別
   $periodCH=['','1月~2月','3月~4月','5月~6月','7月~8月','9月~10月','11月~12月']; // 定義：月份中文
@@ -30,13 +9,13 @@
   //   $year=$year-1;
   // } // 例外條件
 
-  $sql="SELECT `invoice`.`id`,`code`,`num`,RIGHT(`date`,5),`amount`,`contype`.`desCH`,`store`.`name`,`user_id` FROM `invoice`,`contype`,`store` WHERE `invoice`.`type`=`contype`.`type` && `contype`.`type`=`store`.`type` && `user_id`='{$user_id}' && `year`='{$year}' && `period`='{$period}' order by `date`"; // Mysql搜尋語法
+  $sql="SELECT `invoice`.`id`,`invoice`.`code`,`invoice`.`num`,RIGHT(`date`,5),`invoice`.`amount`,`contype`.`desCH`,`store`.`name`,`invoice`.`user_id` FROM `invoice`,`contype`,`store` WHERE `invoice`.`type`=`contype`.`type` && `contype`.`type`=`store`.`type` && `user_id`='{$user_id}' && `year`='{$year}' && `period`='{$period}' order by `date`"; // Mysql搜尋語法
   $rows=querySQLall($sql); // 資料庫抓出的發票陣列
 
 
   $t_inv=count($rows); // 定義：發票 總筆數
   $t_col=count(array_keys($rows[0])); // 定義：欄位 個數
-  $pLine=10; // 定義：每頁行數
+  $pLine=15; // 定義：每頁行數
   $pNum=ceil($t_inv/$pLine); //定義： 總頁數
   $invs=array_chunk($rows,$pLine); // 定義：每頁的發票陣列 依照每頁行數分割成不同陣列
 
@@ -46,15 +25,15 @@
   if(!empty($_GET['pPre'])){$pPre=$page-1;}else{$pPre=1;} if($pPre<1){$pPre=1;} // 定義：上頁頁數
 
   // print_r($year);
-  echo "<hr>";
+  // echo "<hr>";
   // print_r($sql);
-  echo "<hr>";
-  // print_r($invs);
-  echo "<hr>";
+  // echo "<hr>";
   // print_r($rows);
-  echo "<hr>";
-  // print_r($invs[1][8]);
-  echo "</hr>";
+  // echo "<hr>";
+  // // print_r($rows);
+  // echo "<hr>";
+  // // print_r($invs[1][8]);
+  // echo "</hr>";
 
   $col=(array_keys($invs[0][0])); // 定義：每張發票的key 陣列
   $columnN=['id','字軌','號碼','日期','金額','消費類型','消費商家','user_id']; // column 中文描述
@@ -74,7 +53,7 @@
   $_SESSION['pNext']=$pNext; // 回傳：下頁頁數
   $_SESSION['pPre']=$pPre; // 回傳：上頁頁數
 
-  go("../index.php?do=invoice_list");
+  go("./../../index.php?do=invoice_list");
   
 ?>
 
