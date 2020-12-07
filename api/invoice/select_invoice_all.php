@@ -9,7 +9,7 @@
   //   $year=$year-1;
   // } // 例外條件
 
-  $sql="SELECT `invoice`.`id`,`invoice`.`code`,`invoice`.`num`,RIGHT(`date`,5),`invoice`.`amount`,`contype`.`desCH`,`store`.`name`,`invoice`.`user_id` FROM `invoice`,`contype`,`store` WHERE `invoice`.`type`=`contype`.`type` && `contype`.`type`=`store`.`type` && `user_id`='{$user_id}' && `year`='{$year}' && `period`='{$period}' order by `date`"; // Mysql搜尋語法
+  $sql="SELECT `invoice`.`id`,`invoice`.`code`,`invoice`.`num`,RIGHT(`date`,5),`invoice`.`amount`,`contype`.`desCH`,`store`.`name`,`invoice`.`user_id`,`contype`.`type` FROM `invoice`,`contype`,`store` WHERE `invoice`.`type`=`contype`.`type` && `invoice`.`store`=`store`.`id` && `contype`.`type`=`store`.`type` && `user_id`='{$user_id}' && `year`='{$year}' && `period`='{$period}' order by `date`"; // Mysql搜尋語法
   $rows=querySQLall($sql); // 資料庫抓出的發票陣列
 
 
@@ -36,7 +36,7 @@
   // echo "</hr>";
 
   $col=(array_keys($invs[0][0])); // 定義：每張發票的key 陣列
-  $columnN=['id','字軌','號碼','日期','金額','消費類型','消費商家','user_id']; // column 中文描述
+  $columnN=['id','字軌','號碼','日期','金額','消費類型','消費商家','user_id','消費類型no']; // column 中文描述
 
 /* 將運算完的值傳回畫面*/
   $_SESSION['year']=$year; // 回傳：年份

@@ -1,5 +1,12 @@
 <?php
   include_once "./../../base.php";
+  $_SESSION['rows_1K']=[];
+  $_SESSION['rows_1M']=[];
+  $_SESSION['rows_1']=[];
+  $_SESSION['rows_6A']=[];
+  $_SESSION['t_6A']='';
+  $_SESSION['rows_p']=[];
+
 
   if(empty($_POST['year'])){$year=date('Y');}else{$year=$_POST['year'];}; // 定義：年份
   if(empty($_POST['periodA'])){$periodA=ceil(date('m')/2)-1;}else{$periodA=$_POST['periodA'];}; // 定義：開獎期別
