@@ -102,17 +102,17 @@ if(!empty($_SESSION['acc'])){
       <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('check_award','num');?></span></div><?php }?>
       <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('check_award','no');?></span></div><?php }?>
     </div>
-    <div class="col-6 my-2 d-flex justify-content-center">
-      <button type="submit" class="btn btn-info mx-2">送出</button>
-      <button type="reset" class="btn btn-warning mx-2">重填</button>
-    </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <?php if(!empty($_SESSION['reward'])){?><div><span class="reward-C">恭喜您在<?=$_SESSION['reward']['year'];?>年
       <?=$periodCH[$_SESSION['reward']['period']];?>中獎！<br>獎項為<span class="text-danger font-weight-bolder"><?=$_SESSION['reward']['name'];?></span>，號碼為<span class="text-danger font-weight-bolder"><?=$_SESSION['reward']['num'];?></span>
       <br>獎金為<?=$_SESSION['reward']['amountC'];?>！</span>
     </div><?php }?>
-    </div>
 
+    <div class="col-6 my-2 d-flex justify-content-center">
+      <button type="submit" class="btn btn-info mx-2">送出</button>
+      <button type="reset" class="btn btn-warning mx-2">重填</button>
+    </div>
+    </div>
   </div>
 </form>  
 
