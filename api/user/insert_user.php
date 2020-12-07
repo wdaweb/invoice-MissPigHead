@@ -11,7 +11,7 @@ if(!preg_match("/^09/",$_POST['tel'])||!preg_match("/[0-9]{10}/",$_POST['tel']))
 if(!preg_match("/[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+/",$_POST['email'])){$_SESSION['err']['signup']['email']="請檢查email格式";}
 if($_POST['pw']!==$_POST['pw2']){$_SESSION['err']['signup']['pw2']="請輸入相同密碼";}
 
-if(!empty($_SESSION['err'])){go("../index.php?do=signup");}else{
+if(!empty($_SESSION['err'])){go("./../../index.php?do=signup");}else{
 $sql2="insert into `user`(`acc`,`pw`,`birth`,`tel`,`email`) values('".$_POST['acc']."','".$_POST['pw']."','".$_POST['birth']."','".$_POST['tel']."','".$_POST['email']."')";
 $addU=querySQLall($sql2);
 $_SESSION['acc']=$_POST['acc'];

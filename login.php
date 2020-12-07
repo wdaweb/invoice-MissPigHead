@@ -1,7 +1,7 @@
 <?php
 include_once("base.php");
 if(!empty($_SESSION['acc'])){
-  go("./index.php?do=welcome");
+  go("./index.php?do=invoice_list");
 }
 ?>
 <form class="container" action="./api/user/check_user.php" method="post">

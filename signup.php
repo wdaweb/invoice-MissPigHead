@@ -4,7 +4,7 @@ if(!empty($_SESSION['acc'])){
   go("./index.php?do=welcome");
 }
 ?>
-<form class="container" action="./api/insert_user.php" method="post">
+<form class="container" action="./api/user/insert_user.php" method="post">
   <div class="row justify-content-center">
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
