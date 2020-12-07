@@ -3,6 +3,9 @@ $pdo=new PDO("mysql:host=localhost;dbname=invoicesys;charset=utf8",'root','');
 date_default_timezone_set("Asia/Taipei");
 session_start();
 
+
+$periodCH=['','1月~2月','3月~4月','5月~6月','7月~8月','9月~10月','11月~12月']; // 定義：月份中文
+
 function querySQLall($sql){
   global $pdo;
   return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
