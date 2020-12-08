@@ -39,12 +39,13 @@
       </div>
       <div class="col-12">
         <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('award_list','notyet');?></span></div><?php }?>
+        <?php if(!empty($_SESSION['err'])){?><div><span class="errmsg"><?=errFeedBack('award_list','expired');?></span></div><?php }?>
       </div>
       <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2 row d-flex  justify-content-center">
         <button type="submit" class="btn btn-info mx-2 text-xxs-08">送出</button>
       </div>
     </form>
-    <?php if(empty($_SESSION['err'])){?>
+    <?php if(empty($_SESSION['err']['award_list']['notyet'])){?>
     <!-- 列出開獎獎號 -->
     <div class="col-12 col-sm-10 col-md-8 col-lg-6 mx-md-5 mt-3 text-center h5 font-weight-bold">開獎獎號</div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-1">  <!-- 特別獎 -->
