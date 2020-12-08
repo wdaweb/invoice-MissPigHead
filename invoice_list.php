@@ -41,7 +41,7 @@
       </select>
     </div>
     <div class="input-group col-2 px-0 d-flex justify-content-center">
-      <button type="submit" class="btn btn-info px-1 px-sm-2 px-md-4 px-lg-5">送出</button>
+      <button type="submit" class="btn btn-info px-1 px-sm-2 px-md-4 px-lg-5 text-07">送出</button>
     </div>
   </div>
 </form>  
