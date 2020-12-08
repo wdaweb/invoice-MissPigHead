@@ -48,7 +48,7 @@ body{
     font-size: 0.7rem;
 }
 
-#awardList .award-n{
+.award-n{
     color: #dc3545;   
     font-weight: 800;     
 }
