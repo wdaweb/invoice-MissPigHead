@@ -3,7 +3,8 @@ $pdo=new PDO("mysql:host=localhost;dbname=invoicesys;charset=utf8",'root','');
 date_default_timezone_set("Asia/Taipei");
 session_start();
 
-
+if(empty($_SESSION['year'])){$_SESSION['year']=date('Y');}
+if(empty($_SESSION['period'])){$_SESSION['period']=ceil(date('m')/2);}
 $periodCH=['','1月~2月','3月~4月','5月~6月','7月~8月','9月~10月','11月~12月']; // 定義：月份中文
 
 function querySQLall($sql){
