@@ -27,6 +27,7 @@
       </div>
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0">
+      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('add_award','year');?></span></div><?php } ?>
       <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('add_award','notyet');?></span></div><?php } ?>
     </div>
   <!-- 獎號輸入 -->
@@ -77,7 +78,7 @@
       <input type="text" class="form-control" name="1[]">
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0"><!-- 頭獎：輸入後回覆訊息 -->
-      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('add_award','1');?></span></div><?php }?>
+      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('add_award','2');?></span></div><?php }?>
     </div>
     
     <!-- 增開獎項 -->
@@ -156,6 +157,11 @@
       <?php if(!empty($_SESSION['err']['add_award']['sp1'][2])){?><div class="col-12"><span class="errmsg"><?php echo $_SESSION['err']['add_award']['sp1'][2];?></span></div><?php }?>
       <?php if(!empty($_SESSION['err']['add_award']['sp6A'][2])){?><div class="col-12"><span class="errmsg"><?php echo $_SESSION['err']['add_award']['sp6A'][2];?></span></div><?php }?>
       <?php if(!empty($_SESSION['err']['add_award']['sp'][2])){?><div class="col-12"><span class="errmsg"><?php echo $_SESSION['err']['add_award']['sp'][2];?></span></div><?php }?>
+    </div>
+    <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0"><!-- 增開獎：輸入後回覆訊息 -->
+      <?php if(!empty($_SESSION['err']['add_award']['spA'][0])){?><div class="col-12"><span class="errmsg"><?php echo $_SESSION['err']['add_award']['spA'][0];?></span></div><?php }?>
+      <?php if(!empty($_SESSION['err']['add_award']['spA'][1])){?><div class="col-12"><span class="errmsg"><?php echo $_SESSION['err']['add_award']['spA'][1];?></span></div><?php }?>
+      <?php if(!empty($_SESSION['err']['add_award']['spA'][2])){?><div class="col-12"><span class="errmsg"><?php echo $_SESSION['err']['add_award']['spA'][2];?></span></div><?php }?>
     </div>
     <div class="col-10 my-2 d-flex justify-content-center"><!-- 送出 -->
       <button type="submit" class="btn btn-info mx-2">送出</button>
