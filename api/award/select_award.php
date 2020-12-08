@@ -19,7 +19,8 @@
   if((((($periodA*2+1)>date('m'))||((($periodA*2+1)==date('m')) && (date('d')<25)))&& $year==date('Y'))||$year>date('Y')){
     $_SESSION['err']['award_list']['notyet']="該期獎號尚未開獎";
   }else{
-
+    if((($_POST['periodA']<=(ceil(date('m')/2)-3))&& ($year==date('Y')))||($year<date('Y'))){
+      $_SESSION['err']['award_list']['expired']="該期發票已過兌獎期限";}
 
   $sql_1K="SELECT `award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,`prize`.`type`,`prize`.`name`,`prize`.`amountC` FROM `award`,`prize` WHERE `award`.`year`='{$year}' && `award`.`period`='{$periodA}' && `award`.`type`='1K' && `award`.`type`=`prize`.`type`"; // Mysql搜尋語法
   $sql_1M="SELECT `award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,`prize`.`type`,`prize`.`name`,`prize`.`amountC` FROM `award`,`prize` WHERE `award`.`year`='{$year}' && `award`.`period`='{$periodA}' && `award`.`type`='1M' && `award`.`type`=`prize`.`type`"; // Mysql搜尋語法
