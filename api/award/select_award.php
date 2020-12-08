@@ -28,13 +28,6 @@
   $sql_6A="SELECT `award`.`year`,`award`.`period`,`award`.`num`,`award`.`type`,`prize`.`type`,`prize`.`name`,`prize`.`amountC` FROM `award`,`prize` WHERE `award`.`year`='{$year}' && `award`.`period`='{$periodA}' && `award`.`type`='6A' && `award`.`type`=`prize`.`type`"; // Mysql搜尋語法
   $sql_p="SELECT * FROM `prize`"; // Mysql搜尋語法
 
-        print_r($sql_1K);
-        echo "<hr>";
-        print_r($sql_1M);
-        echo "<hr>";
-        print_r($sql_1);
-        echo "<hr>";
-        print_r($sql_6A);
 
   $rows_1K=querySQLall($sql_1K); // 特別獎 獎號陣列
   $rows_1M=querySQLall($sql_1M); // 特獎 獎號陣列
@@ -48,22 +41,6 @@
   if(empty($rows_1)){$rows_1[0]=$rows_1[1]=$rows_1[2]=['year'=>'','period'=>'','num'=>'','type'=>'','name'=>'','amountC'=>''];}
   if(empty($rows_6A)){$rows_6A[0]=$rows_6A[1]=$rows_6A[2]=['year'=>'','period'=>'','num'=>'','type'=>'','name'=>'','amountC'=>''];}
 }
-
-  echo "<pre>";
-  // echo "<hr>";
-  // print_r($rows_1K);
-  // echo "<hr>";
-  // print_r($rows_1M);
-  // echo "<hr>";
-  // print_r($rows_1);
-  // echo "<hr>";
-  // print_r($rows_6A);
-  // echo "<hr>";
-  // print_r($t_6A);
-  echo "<hr>";
-  
-  echo "</pre>";
-
 
 /* 將運算完的值傳回畫面*/
   $_SESSION['year']=$year; // 回傳：年份
@@ -79,11 +56,6 @@
   $_SESSION['rows_p']=$rows_p; // 回傳：獎金說明
 
   go("./../../index.php?do=award_list");
-
-  print_r($_SESSION);
-  echo "<hr>";
-
-  echo "</pre>";
 
 ?>
 
