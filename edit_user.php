@@ -3,8 +3,9 @@ include_once("base.php");
 
 $user=$_SESSION['user'];
 ?>
-<form class="container" action="./api/update_user.php" method="post">
+<form class="container" action="./api/user/update_user.php" method="post">
   <div class="row justify-content-center">
+  <div class="col-12 col-sm-10 col-md-8 col-lg-6 mx-md-5 mt-3 text-center h5 font-weight-bold">個人資料</div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
       <div class="input-group-prepend">
         <span class="input-group-text">帳號</span>
