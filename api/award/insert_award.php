@@ -10,16 +10,16 @@ if(($_POST['year']>$year=date('Y'))||(($_POST['year']==$year=date('Y'))&&($_POST
 if((!empty($_POST['1K']))&&(!preg_match("/[0-9]{8}/",$_POST['1K']))){
     $_SESSION['err']['add_award']['1K']="特別獎獎號應為8位數字";
 }else{
-    $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$_POST['1K']}','1K')";
-    execSQLall($sql);
+    $sql1K="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$_POST['1K']}','1K')";
+    execSQLall($sql1K);
     $_SESSION['err']['add_award']['1K']="特別獎獎號{$_POST['1K']}新增成功";
 }
 
 if((!empty($_POST['1M']))&(!preg_match("/[0-9]{8}/",$_POST['1M']))){
     $_SESSION['err']['add_award']['1M']="特獎獎號應為8位數字";
 }else{
-    $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$_POST['1M']}','1M')";
-    execSQLall($sql);
+    $sql1M="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$_POST['1M']}','1M')";
+    execSQLall($sql1M);
     $_SESSION['err']['add_award']['1M']="特獎獎號{$_POST['1M']}新增成功";
 }
 
@@ -28,8 +28,8 @@ for($i=0;$i<3;$i++){
     if((!empty($t))&(!preg_match("/[0-9]{8}/",$t))){
         $_SESSION['err']['add_award'][$i]="頭獎獎號應為8位數字";
     }else{
-        $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$t}','1')";
-        execSQLall($sql);
+        $sqlA1="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$t}','1')";
+        execSQLall($sqlA1);
         $_SESSION['err']['add_award'][$i]="頭獎獎號{$t}新增成功";
     }
 }
@@ -70,24 +70,24 @@ for($i=0;$i<3;$i++){
 if(isset($sp_1M_num)){
     $t1M=count($sp_1M_num);
     for($i=0;$i<$t1M;$i++){
-        $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','$sp_1M_num[$i]','1M'";
-        execSQLall($sql);
+        $sql1Msp="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','$sp_1M_num[$i]','1M'";
+        execSQLall($sql1Msp);
     }
 }
 
 if(isset($sp_1_num)){
     $t1=count($sp_1_num);
     for($i=0;$i<$t1;$i++){
-        $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','$sp_1_num[$i]','1'";
-        execSQLall($sql);
+        $sql1sp="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','$sp_1_num[$i]','1'";
+        execSQLall($sql1sp);
     }
 }
 
 if(isset($sp_6A_num)){
     $t6A=count($sp_6A_num);
     for($i=0;$i<$t6A;$i++){
-        $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','$sp_6A_num[$i]','6A'";
-        execSQLall($sql);
+        $sql6A="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','$sp_6A_num[$i]','6A'";
+        execSQLall($sql6A);
     }
 }
 
