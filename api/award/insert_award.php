@@ -7,7 +7,7 @@ if(($_POST['year']>$year=date('Y'))||(($_POST['year']==$year=date('Y'))&&($_POST
     if(empty($_POST['year'])){$year=date('Y');}else{$year=$_POST['year'];}
     if(empty($_POST['period'])){$period=ceil(date('m')/2)-1;}else{$period=$_POST['period'];}}
 
-if(!preg_match("/[0-9]{8}/",$_POST['1K'])){
+if((!empty($_POST['1K']))&&(!preg_match("/[0-9]{8}/",$_POST['1K']))){
     $_SESSION['err']['add_award']['1K']="特別獎獎號應為8位數字";
 }else{
     $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$_POST['1K']}','1K')";
@@ -15,7 +15,7 @@ if(!preg_match("/[0-9]{8}/",$_POST['1K'])){
     $_SESSION['err']['add_award']['1K']="特別獎獎號{$_POST['1K']}新增成功";
 }
 
-if(!preg_match("/[0-9]{8}/",$_POST['1M'])){
+if((!empty($_POST['1M']))&(!preg_match("/[0-9]{8}/",$_POST['1M']))){
     $_SESSION['err']['add_award']['1M']="特獎獎號應為8位數字";
 }else{
     $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$_POST['1M']}','1M')";
@@ -25,12 +25,12 @@ if(!preg_match("/[0-9]{8}/",$_POST['1M'])){
 
 for($i=0;$i<3;$i++){
     $t=$_POST['1'][$i];
-    if(!preg_match("/[0-9]{8}/",$t)){
+    if((!empty($t))&(!preg_match("/[0-9]{8}/",$t))){
         $_SESSION['err']['add_award'][$i]="頭獎獎號應為8位數字";
     }else{
-        $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$_POST['1M'][$i]}','1')";
+        $sql="INSERT INTO `award`(`year`, `period`, `num`, `type`) VALUES ('{$year}','{$period}','{$t}','1')";
         execSQLall($sql);
-        $_SESSION['err']['add_award'][$i]="頭獎獎號{$_POST['1M'][$i]}新增成功";
+        $_SESSION['err']['add_award'][$i]="頭獎獎號{$t}新增成功";
     }
 }
 
@@ -62,7 +62,7 @@ for($i=0;$i<3;$i++){
         }else{
             $sp_6A_num[]=$_POST['sp_num'][$i];                        
         }
-    }elseif(empty($_POST['sp_prize'][$i]=='') && !empty($_POST['sp_num'][$i])){
+    }elseif(empty($_POST['sp_prize'][$i]) && !empty($_POST['sp_num'][$i])){
         $_SESSION['err']['add_award']['sp'][$i]="請選擇增加的獎項";
     }
 }
@@ -91,17 +91,5 @@ if(isset($sp_6A_num)){
     }
 }
 
-print_r($_POST);
-echo "<hr>";
-// print_r($sp_1M_num);
-// echo "<hr>";
-// print_r($sp_1_num);
-// echo "<hr>";
-// print_r($sp_6A_num);
-// echo "<hr>";
-
-print_r($_SESSION);
-    
 go("./../../index.php?do=add_award");
-
 ?>
