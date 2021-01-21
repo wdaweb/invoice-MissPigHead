@@ -1,7 +1,7 @@
 <?php
 include_once("base.php");
 if(!empty($_SESSION['acc'])){
-  go("./index.php?do=welcome");
+  go("./index.php");
 }
 ?>
 <form class="container" action="./api/user/insert_user.php" method="post">
@@ -43,13 +43,13 @@ if(!empty($_SESSION['acc'])){
       <input type="email" class="form-control" name="email" required>
     </div>
     <div class="input-group col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-md-5 px-0 my-2">
-      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','accused');}?></span></div>
-      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','acc');}?></span></div>
-      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','pw');}?></span></div>
-      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','pw2');}?></span></div>
-      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','birth');}?></span></div>
-      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','tel');}?></span></div>
-      <div class="col-12"><span class="errmsg"><?php if(!empty($_SESSION['err'])){errFeedBack('signup','email');}?></span></div>
+      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('signup','accused');?></span></div><?php } ?>
+      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('signup','acc');?></span></div><?php } ?>
+      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('signup','pw');?></span></div><?php } ?>
+      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('signup','pw2');?></span></div><?php } ?>
+      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('signup','birth');?></span></div><?php } ?>
+      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('signup','tel');?></span></div><?php } ?>
+      <?php if(!empty($_SESSION['err'])){?><div class="col-12"><span class="errmsg"><?=errFeedBack('signup','email');?></span></div><?php } ?>
     </div>
     <div class="col-6 my-2 d-flex justify-content-center">
       <button type="submit" class="btn btn-info mx-2">註冊</button>
