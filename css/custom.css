@@ -1,0 +1,65 @@
+body{
+    background: #f8f9fa;
+}
+
+.mainframe{
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+}
+
+#menu .dropdown-item:focus, .dropdown-item:hover {
+    color: #051937 !important;
+    text-decoration: none;
+    background-color: #dee2e6;
+}
+
+#menu .dropdown-item:active {
+    color: #051937 !important;
+    text-decoration: none;
+    background-color: #BEE5EB;
+}
+
+.invoice-list-1-th{
+    display: block;
+    position: relative;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+
+
+#invoiceList a:hover{
+    color: #dc3545;
+    text-decoration: none;
+    background-color: lightgoldenrodyellow;
+}
+
+#invoiceList a{
+    color: #acacac;
+}
+
+#invoiceList .page-link:hover{
+    background-color: powderblue;
+}
+
+.errmsg{
+    color: darkred;
+    font-size: 0.7rem;
+}
+
+.award-n{
+    color: #dc3545;   
+    font-weight: 800;     
+}
+@media(max-width:576px){
+    #invoiceList .invoice-list-1-th, .text-07{
+        font-size: 0.7rem;
+    }
+}
+
+@media(max-width:400px){
+    .text-xxs-08{
+        font-size: 0.8rem !important;
+    }
+}
